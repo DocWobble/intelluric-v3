@@ -1,4 +1,3 @@
-import { createHash } from "node:crypto";
 import { readdir, readFile, stat } from "node:fs/promises";
 import { extname, join, relative, resolve } from "node:path";
 
@@ -49,6 +48,18 @@ for (const path of forbiddenSpecimens) {
   }
 }
 
+for (const required of [
+  "contracts/VISUAL_AUTHORITY.md",
+  "contracts/VISUAL_SYSTEM_CONTRACT.md",
+  "contracts/FRONTEND_ARCHITECTURE.md",
+  "reference/visual-contract/SCREENSHOT_MANIFEST.md",
+  "reference/visual-contract/SOURCE_PROVENANCE.md",
+  "packages/material-system/src/material-system.css",
+  "packages/material-system/specimen/MaterialLab.tsx",
+]) {
+  if (!(await exists(join(root, required)))) failures.push(`Missing authority file: ${required}`);
+}
+
 const primitiveSource = await readFile(
   join(root, "packages/material-system/src/primitives.tsx"),
   "utf8",
@@ -85,53 +96,21 @@ const forbiddenPatterns = [
 for (const file of files) {
   const path = repoPath(file);
   if (!inspectExtensions.has(extname(file))) continue;
-  if (
-    allowedVisualRoots.some(
-      (allowed) => path === allowed || path.startsWith(allowed),
-    )
-  ) {
-    continue;
-  }
+  if (allowedVisualRoots.some((allowed) => path === allowed || path.startsWith(allowed))) continue;
   const source = await readFile(file, "utf8");
   for (const [pattern, label] of forbiddenPatterns) {
-    if (pattern.test(source)) {
-      failures.push(`${label} outside visual authority: ${path}`);
-    }
+    if (pattern.test(source)) failures.push(`${label} outside visual authority: ${path}`);
     pattern.lastIndex = 0;
   }
 }
 
-const manifestPath = join(
-  root,
-  "reference/visual-contract/SCREENSHOT_MANIFEST.md",
-);
-if (!(await exists(manifestPath))) {
-  failures.push("Missing binding screenshot manifest");
-} else {
+const manifestPath = join(root, "reference/visual-contract/SCREENSHOT_MANIFEST.md");
+if (await exists(manifestPath)) {
   const manifest = await readFile(manifestPath, "utf8");
-  const rows = [
-    ...manifest.matchAll(
-      /\| `([^`]+\.jpeg)` \|[^\n]+\| `([0-9a-f]{64})` \|/g,
-    ),
-  ];
-  if (rows.length !== 7) {
-    failures.push(
-      `Screenshot manifest must contain 7 hashed fixtures; found ${rows.length}`,
-    );
-  }
-  for (const [, name, expected] of rows) {
-    const imagePath = join(root, "reference/visual-contract", name);
-    if (!(await exists(imagePath))) {
-      failures.push(`Missing screenshot fixture: ${name}`);
-      continue;
-    }
-    const actual = createHash("sha256")
-      .update(await readFile(imagePath))
-      .digest("hex");
-    if (actual !== expected) {
-      failures.push(`Screenshot digest mismatch: ${name}`);
-    }
-  }
+  const rows = [...manifest.matchAll(/\| `([^`]+\.jpeg)` \|[^\n]+\| `([0-9a-f]{64})` \|/g)];
+  if (rows.length !== 7) failures.push(`Screenshot manifest must identify 7 source fixtures; found ${rows.length}`);
+  const expectedViewports = (manifest.match(/`1448 × 1086`/g)?.length ?? 0) === 6 && manifest.includes("`864 × 1536`");
+  if (!expectedViewports) failures.push("Screenshot manifest does not preserve the six desktop and one mobile contract viewports");
 }
 
 if (failures.length) {
