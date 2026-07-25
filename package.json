@@ -1,0 +1,19 @@
+{
+  "name": "intelluric-platform",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "tokens:build": "node packages/design-tokens/scripts/build.mjs",
+    "tokens:check": "node packages/design-tokens/scripts/build.mjs --check",
+    "check": "npm run tokens:check"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
+
