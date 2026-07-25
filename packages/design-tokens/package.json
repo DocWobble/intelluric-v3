@@ -1,0 +1,19 @@
+{
+  "name": "@intelluric/design-tokens",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    "./tokens.css": "./dist/tokens.css",
+    "./tokens": "./dist/tokens.ts",
+    "./tokens.json": "./dist/tokens.resolved.json"
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "check": "node scripts/build.mjs --check"
+  }
+}
+
