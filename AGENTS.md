@@ -1,38 +1,34 @@
 # Agent Contract
 
-## Authority
+## Start here
 
-The supplied InTelluric and Pitch Synthase screenshots are binding UI/UX
-contracts. `contracts/VISUAL_SYSTEM_CONTRACT.md` records the universal choices
-made where those screenshots contain incidental inconsistencies.
+Before frontend work, read in this order:
 
-Observable screenshot geometry governs page-specific composition. The shared
-token system governs every repeated visual property.
+1. `contracts/VISUAL_AUTHORITY.md`
+2. `reference/visual-contract/SCREENSHOT_MANIFEST.md`
+3. `contracts/VISUAL_SYSTEM_CONTRACT.md`
+4. `contracts/FRONTEND_ARCHITECTURE.md`
+
+These files and the referenced screenshots are binding. There is no discretionary visual-design phase.
+
+## Single authority chain
+
+- Screenshots define observable geometry, density, hierarchy, and finish.
+- Design tokens define shared scalar values.
+- `@intelluric/material-system` defines every repeated physical surface.
+- Applications compose primitives and supply editable content; they do not invent style.
 
 ## Non-negotiable rules
 
-1. Use `@intelluric/design-tokens` for every shared color, type style, spacing
-   interval, radius, border, shadow, material, motion value, and breakpoint.
-2. Do not add raw hexadecimal, RGB, HSL, font-family, box-shadow, border-radius,
-   or transition values inside application components.
-3. Do not create page-local substitutes for an existing primitive or compound
-   component.
-4. Contextual color is selected with `data-accent`. Contextual accents may
-   change hue; they may not change component construction.
-5. Public pages use the editorial shell. Pitch Synthase uses the instrument
-   shell. Both consume the same tokens and primitives.
-6. Generated files under `packages/design-tokens/dist/` are read-only.
-7. New shared values begin in `packages/design-tokens/src/`, followed by
-   `npm run tokens:build`.
-8. `npm run check` must pass before a change is eligible for review.
-9. A functional change is not authorization to alter layout, copy, or style.
-10. Legacy code is quarantined until a migration inventory names the exact
-    source, destination, dependency, and acceptance test.
+1. Use `@intelluric/design-tokens` for shared color, type, spacing, radius, border, motion, layout, and contextual accent values.
+2. Use `@intelluric/material-system` for frames, wells, raised cards, recessed controls, crystal actions, technical labels, and overlays.
+3. Do not add raw hexadecimal, RGB, HSL, gradient, box-shadow, font-family, bevel, texture, or glow recipes in applications or page components.
+4. Do not create page-local substitutes for a material primitive.
+5. Contextual accents change hue only; geometry and material construction remain fixed.
+6. Public pages use the editorial shell. Pitch Synthase uses the instrument shell.
+7. Generated files under `packages/design-tokens/dist/` are read-only.
+8. Copy and record data remain separate from JSX composition.
+9. A functional change is not authorization to alter layout or style.
+10. `npm run check` must pass before review.
 
-## Drift rule
-
-When two pages depict the same kind of object differently, select the canonical
-variant already recorded in the visual-system contract. Do not preserve both
-unless the difference is explicitly classified as semantic, responsive, or
-shell-specific.
-
+Any ambiguity is a defect in the repository. Stop and repair the authority documents or primitives; do not make an interpretive design choice.
