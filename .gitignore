@@ -1,0 +1,9 @@
+node_modules/
+.DS_Store
+.env
+.env.*
+!.env.example
+dist/
+!packages/design-tokens/dist/
+!packages/design-tokens/dist/**
+
