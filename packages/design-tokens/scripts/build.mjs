@@ -25,7 +25,19 @@ const themeBlocks=Object.entries(themes).map(([name,m])=>`[data-accent="${name}"
 const css=`/* Generated. Do not edit. */\n:root {\n${declarations.join("\n")}\n}\n\n${themeBlocks.join("\n\n")}\n`;
 const resolved={}; for(const token of tokens.values()) setNested(resolved,token.path,resolve(token.value,tokens));
 const ts=`export const tokens = ${JSON.stringify(resolved,null,2)} as const;\nexport type IntelluricTokens = typeof tokens;\nexport default tokens;\n`;
-const json=`${JSON.stringify(resolved,null,2)}\n`;
+const json=`${JSON.stringify(resolved)}\n`;
 await mkdir(outputRoot,{recursive:true});
-for(const [name,content] of [["tokens.css",css],["tokens.ts",ts],["tokens.resolved.json",json]]){ const p=join(outputRoot,name); if(checkOnly){ const old=await readFile(p,"utf8"); if(old!==content) throw new Error(`Generated output is stale: ${p}`);} else await writeFile(p,content,"utf8"); }
+if(checkOnly){
+  const existingCss=await readFile(join(outputRoot,"tokens.css"),"utf8");
+  if(existingCss!==css) throw new Error("Generated CSS token output is stale");
+  const existingJson=JSON.parse(await readFile(join(outputRoot,"tokens.resolved.json"),"utf8"));
+  if(JSON.stringify(existingJson)!==JSON.stringify(resolved)) throw new Error("Generated JSON token output is stale");
+  const existingTs=await readFile(join(outputRoot,"tokens.ts"),"utf8");
+  const match=existingTs.match(/^export const tokens = ([\s\S]+) as const;\nexport type/);
+  if(!match || JSON.stringify(JSON.parse(match[1]))!==JSON.stringify(resolved)) throw new Error("Generated TypeScript token output is stale");
+}else{
+  await writeFile(join(outputRoot,"tokens.css"),css,"utf8");
+  await writeFile(join(outputRoot,"tokens.ts"),ts,"utf8");
+  await writeFile(join(outputRoot,"tokens.resolved.json"),json,"utf8");
+}
 console.log(checkOnly?`Token outputs are current (${tokens.size} tokens).`:`Generated ${tokens.size} tokens.`);
