@@ -1,0 +1,43 @@
+{
+  "teal": {
+    "color.accent.context": "{color.teal.300}",
+    "color.accent.context-strong": "{color.teal.200}",
+    "color.accent.context-dim": "{color.teal.600}",
+    "color.accent.context-border": "rgba(101, 217, 204, 0.72)",
+    "color.accent.context-fill": "rgba(56, 188, 175, 0.13)",
+    "color.accent.context-glow": "rgba(56, 188, 175, 0.30)"
+  },
+  "sapphire": {
+    "color.accent.context": "{color.sapphire.300}",
+    "color.accent.context-strong": "{color.sapphire.200}",
+    "color.accent.context-dim": "{color.sapphire.600}",
+    "color.accent.context-border": "rgba(125, 178, 255, 0.72)",
+    "color.accent.context-fill": "rgba(75, 143, 232, 0.13)",
+    "color.accent.context-glow": "rgba(75, 143, 232, 0.30)"
+  },
+  "copper": {
+    "color.accent.context": "{color.copper.300}",
+    "color.accent.context-strong": "{color.copper.200}",
+    "color.accent.context-dim": "{color.copper.600}",
+    "color.accent.context-border": "rgba(201, 139, 98, 0.72)",
+    "color.accent.context-fill": "rgba(173, 105, 70, 0.13)",
+    "color.accent.context-glow": "rgba(173, 105, 70, 0.28)"
+  },
+  "violet": {
+    "color.accent.context": "{color.violet.300}",
+    "color.accent.context-strong": "{color.violet.200}",
+    "color.accent.context-dim": "{color.violet.600}",
+    "color.accent.context-border": "rgba(179, 151, 242, 0.72)",
+    "color.accent.context-fill": "rgba(139, 105, 209, 0.13)",
+    "color.accent.context-glow": "rgba(139, 105, 209, 0.30)"
+  },
+  "amber": {
+    "color.accent.context": "{color.amber.300}",
+    "color.accent.context-strong": "{color.amber.200}",
+    "color.accent.context-dim": "{color.amber.600}",
+    "color.accent.context-border": "rgba(230, 169, 88, 0.72)",
+    "color.accent.context-fill": "rgba(201, 130, 47, 0.13)",
+    "color.accent.context-glow": "rgba(201, 130, 47, 0.28)"
+  }
+}
+
