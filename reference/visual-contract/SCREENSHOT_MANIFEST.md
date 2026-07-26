@@ -11,7 +11,7 @@ The seven source images listed below are the visual-contract basis. Observable g
 | `D75994A0-86D9-4687-951C-FB1EC61AC622.jpeg` | Pitch Synthase source intake | `/pitch-synthase/wizard/source` | desktop | `1448 × 1086` | `7202370686e7f76f2ba5db85d02d4bd5667bb9064db6b105b24761c2f4791c28` |
 | `C7726318-48CB-4DE2-BF01-55246AA28437.jpeg` | Public about page | `/about` | desktop | `1448 × 1086` | `ef1f34fcacd72635212e80c6ab4703aa2c16db5258515e6b93ff7433e1bd1e92` |
 | `22DA7146-EFDC-4A2C-9D8E-FC7D83A9E6CD.jpeg` | Public technical-review case study | `/work/em-turbulence-sensor` | desktop | `1448 × 1086` | `4a13ecfcc0923d1936e54ffe5fdf42b7091cf257debbfc566120500190b9466b` |
-| `DECF9777-2952-4B46-A439-DF4BE7F67DEF.jpeg` | Public homepage | `/` | desktop | `1448 × 1086` | `32f108fc697faacd955901222f35fcf310d4f1c3d432535aa89b76e018e7fd1e` |
+| `DECF9777-2952-4B46-A439-DF4BE7F67DEF.jpeg` | Public homepage | `/` | desktop | `1448 × 1086` | `e8c3fba4d380f8bb60fa4254915201bdd3aac89d51e4dcdeaae5baac687508fe` |
 | `F33D5494-298F-4BBB-8B12-84D07D5F0383.jpeg` | Public contact page | `/contact` | desktop | `1448 × 1086` | `0522c177e3d0f8e0a47c5982dafe811b28f577f65170ba94bc2ed4618f48f577` |
 
 ## Interpretation-free mapping
