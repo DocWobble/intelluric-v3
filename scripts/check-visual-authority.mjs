@@ -28,7 +28,6 @@ async function exists(path) {
   try {
     await stat(path);
     return true;
-
   } catch {
     return false;
   }
@@ -60,6 +59,7 @@ const requiredAuthorityFiles = [
   "reference/visual-contract/SCREENSHOT_MANIFEST.md",
   "reference/visual-contract/SOURCE_PROVENANCE.md",
   "reference/visual-contract/visual-contract.v2.json",
+  "reference/visual-contract/source/encoded-fixtures.json",
   "packages/material-system/src/material-system.css",
   "packages/material-system/specimen/MaterialLab.tsx",
 ];
@@ -107,6 +107,57 @@ for (const file of files) {
 
 const manifestPath = join(root, "reference/visual-contract/SCREENSHOT_MANIFEST.md");
 const contractPath = join(root, "reference/visual-contract/visual-contract.v2.json");
+const encodedSourceManifestPath = join(root, "reference/visual-contract/source/encoded-fixtures.json");
+const encodedSourceRoot = join(root, "reference/visual-contract/source");
+let encodedSourceManifest = null;
+
+if (await exists(encodedSourceManifestPath)) {
+  try {
+    encodedSourceManifest = JSON.parse(await readFile(encodedSourceManifestPath, "utf8"));
+    if (encodedSourceManifest.schema_version !== "1.0.0") {
+      failures.push("encoded-fixtures.json schema_version must be 1.0.0");
+    }
+  } catch (error) {
+    failures.push(`Encoded fixture manifest is unreadable: ${error.message}`);
+  }
+}
+
+async function readEncodedFixture(file, expectedSha) {
+  const fixture = encodedSourceManifest?.fixtures?.[file];
+  if (!fixture) {
+    failures.push(`Missing ordered encoded source declaration: ${file}`);
+    return null;
+  }
+  if (fixture.sha256 !== expectedSha) {
+    failures.push(`Encoded source manifest and screenshot manifest disagree: ${file}`);
+  }
+  if (!Array.isArray(fixture.parts) || !fixture.parts.length) {
+    failures.push(`Encoded source declaration has no parts: ${file}`);
+    return null;
+  }
+  if (new Set(fixture.parts).size !== fixture.parts.length) {
+    failures.push(`Encoded source declaration contains duplicate parts: ${file}`);
+    return null;
+  }
+
+  try {
+    const encoded = (
+      await Promise.all(
+        fixture.parts.map(async (part) => {
+          const path = resolve(encodedSourceRoot, part);
+          if (!path.startsWith(`${encodedSourceRoot}/`)) {
+            throw new Error(`Part escapes source root: ${part}`);
+          }
+          return (await readFile(path, "utf8")).trim();
+        }),
+      )
+    ).join("");
+    return Buffer.from(encoded, "base64");
+  } catch (error) {
+    failures.push(`Cannot reconstruct encoded fixture ${file}: ${error.message}`);
+    return null;
+  }
+}
 
 if (await exists(manifestPath)) {
   const manifest = await readFile(manifestPath, "utf8");
@@ -146,24 +197,11 @@ if (await exists(manifestPath)) {
 
   for (const row of rows) {
     const path = join(root, "reference/visual-contract", row.file);
-    let bytes;
-    if (await exists(path)) {
-      bytes = await readFile(path);
-    } else {
-      const sourceRoot = join(root, "reference/visual-contract/source");
-      const prefix = `${row.file}.b64.part`;
-      const parts = (await exists(sourceRoot))
-        ? (await readdir(sourceRoot)).filter((name) => name.startsWith(prefix)).sort()
-        : [];
-      if (!parts.length) {
-        failures.push(`Missing screenshot fixture or encoded source: ${row.file}`);
-        continue;
-      }
-      const encoded = (
-        await Promise.all(parts.map((name) => readFile(join(sourceRoot, name), "utf8")))
-      ).join("");
-      bytes = Buffer.from(encoded, "base64");
-    }
+    const bytes = (await exists(path))
+      ? await readFile(path)
+      : await readEncodedFixture(row.file, row.sha256);
+    if (!bytes) continue;
+
     const actual = createHash("sha256").update(bytes).digest("hex");
     if (actual !== row.sha256) {
       failures.push(`Screenshot fixture hash mismatch: ${row.file} expected ${row.sha256}, found ${actual}`);
