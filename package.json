@@ -7,6 +7,7 @@
   "scripts": {
     "tokens:build": "node packages/design-tokens/scripts/build.mjs",
     "tokens:check": "node packages/design-tokens/scripts/build.mjs --check",
+    "visual:hydrate": "node scripts/hydrate-visual-fixtures.mjs",
     "visual:check": "node scripts/check-visual-authority.mjs",
     "check": "npm run tokens:check && npm run visual:check"
   },
