@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.0.0",
+  "fixtures": {
+    "1872091A-8BC0-4130-AEB8-8CF0D244ECD2.contract.webp": {
+      "sha256": "ac57f00a72df876ac7aa7431a399997422d92281b2d41a495f8abb7c035d3f53",
+      "parts": [
+        "exact/1872091A-8BC0-4130-AEB8-8CF0D244ECD2.contract.webp.b64.00a",
+        "exact/1872091A-8BC0-4130-AEB8-8CF0D244ECD2.contract.webp.b64.00b",
+        "1872091A-8BC0-4130-AEB8-8CF0D244ECD2.contract.webp.b64.part01",
+        "1872091A-8BC0-4130-AEB8-8CF0D244ECD2.contract.webp.b64.part02",
+        "exact/1872091A-8BC0-4130-AEB8-8CF0D244ECD2.contract.webp.b64.03a",
+        "exact/1872091A-8BC0-4130-AEB8-8CF0D244ECD2.contract.webp.b64.03b",
+        "exact/1872091A-8BC0-4130-AEB8-8CF0D244ECD2.contract.webp.b64.04a",
+        "exact/1872091A-8BC0-4130-AEB8-8CF0D244ECD2.contract.webp.b64.04b",
+        "1872091A-8BC0-4130-AEB8-8CF0D244ECD2.contract.webp.b64.part05",
+        "1872091A-8BC0-4130-AEB8-8CF0D244ECD2.contract.webp.b64.part06",
+        "1872091A-8BC0-4130-AEB8-8CF0D244ECD2.contract.webp.b64.part07"
+      ]
+    }
+  }
+}
