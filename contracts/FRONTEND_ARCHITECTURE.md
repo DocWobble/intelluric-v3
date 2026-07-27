@@ -2,160 +2,221 @@
 
 Status: **binding**
 
-This document fixes the frontend structure before page implementation. It is the migration and construction map for the public InTelluric site and Pitch Synthase. Agents may implement this architecture; they may not redesign it.
+This document fixes frontend topology and workflow ownership. It is not authorization to redesign the primary screenshots.
 
 ## Repository topology
 
 ```text
 apps/
   public-site/           Editorial conversion surface
-  pitch-synthase/        Instrument application
+  pitch-synthase/        Seven-step instrument application
 packages/
-  design-tokens/         Shared scalar values; generated CSS, TS, and JSON
-  material-system/       Shared browser-rendered material primitives
+  design-tokens/         Shared scalar values
+  material-system/       Shared browser-rendered physical primitives
   content/               Approved public copy and case-study records
   contracts/             Runtime schemas and boundary validation
 contracts/
   VISUAL_AUTHORITY.md
+  SCREEN_GEOMETRY_CONTRACT.md
   VISUAL_SYSTEM_CONTRACT.md
   FRONTEND_ARCHITECTURE.md
+  PIXEL_ACCEPTANCE_CONTRACT.md
 reference/
-  visual-contract/       Binding screenshot fixtures and manifest
+  visual-contract/
+    SCREENSHOT_MANIFEST.md
+    SOURCE_PROVENANCE.md
+    visual-contract.v2.json
 ```
 
-No third application owns public-facing UI. Existing backend functions, generation pipelines, intake handlers, payment handlers, and document compilers migrate behind these two frontend applications through typed boundaries.
+No third application owns public-facing UI.
 
 ## Authority chain
 
-When implementation references disagree, apply this order:
+Apply:
 
-1. Supplied visual-contract screenshots for observable page composition.
-2. `VISUAL_SYSTEM_CONTRACT.md` for universal shared decisions.
-3. Generated design tokens for shared scalar values.
-4. `@intelluric/material-system` for optical construction and reusable component geometry.
-5. This architecture for routes, ownership, and assembly.
-6. Page copy contract for literal public text.
+1. primary screenshot;
+2. screen geometry;
+3. machine contract;
+4. visual-system contract;
+5. this architecture;
+6. generated tokens;
+7. material primitives;
+8. content.
 
-A lower source cannot override a higher source.
+## Shared public header
 
-## Shells
+Both applications render the same `PublicHeader`. Pitch Synthase does not replace it with an app-only top bar.
 
-### Editorial shell
+Header content:
 
-Owner: `apps/public-site`
+- InTelluric brand;
+- practice descriptor;
+- Services;
+- What We Review;
+- Selected Work;
+- About;
+- Resources;
+- Request Technical Review.
 
-Purpose: establish legitimacy, demonstrate capability through inspectable work, and convert qualified visitors into low-friction inquiries or tool users.
+## Application 1 — public site
 
-Shared structure:
+Purpose: establish legitimacy, demonstrate capability through inspectable work, and convert qualified visitors.
 
-1. Sparse public header: InTelluric, Work, Engagements, About, Contact.
-2. Mineral canvas and ambient technical trace.
-3. Bounded machined content frames.
-4. Proof-first content hierarchy.
-5. Low-pressure primary and secondary actions.
-6. Shared footer with practice description and intake guidance.
+### Public routes
 
-### Instrument shell
+| Route | Purpose | Primary action |
+|---|---|---|
+| `/` | Orient, qualify, and prove capability | Inspect the Work |
+| `/services` | Explain purchasable work | Describe the Project |
+| `/work` | Browse publication-authorized evidence | Open a case study |
+| `/work/[slug]` | Inspect a technical record | Request this kind of review |
+| `/about` | Explain operating model | Start the conversation |
+| `/resources` | Access public reference material | Open resource |
+| `/contact` | Low-friction intake | Send inquiry |
+| `/privacy` | Privacy terms | Return |
+| `/terms` | Service/tool terms | Return |
+| `/inquiry/received` | Confirmation | Inspect work |
 
-Owner: `apps/pitch-synthase`
+### Homepage component assembly
 
-Purpose: guide a user from bounded source material to a reviewed, editable, exportable deck.
-
-Shared structure:
-
-1. InTelluric and Pitch Synthase product header.
-2. Persistent five-stage progress indicator.
-3. Workflow context rail on desktop; compact context drawer on mobile.
-4. One dominant task surface.
-5. Contextual inspector or decision panel.
-6. Persistent save state and forward/back actions.
-
-The instrument shell is denser than the editorial shell. It is not a separate brand and cannot introduce another material system.
-
-## Public route contract
-
-| Route | Purpose | Required first viewport | Primary action |
-|---|---|---|---|
-| `/` | Orient and qualify | Firm proposition plus engineered proof artifact | Inspect the work |
-| `/work` | Public proof index | Publication-authorized technical records | Open a case study |
-| `/work/[slug]` | Inspectable case study | Decision, examined mechanism, verdict, representative outputs | Request this kind of review |
-| `/engagements` | Explain purchasable work | Review types, deliverables, timing, fit | Describe the project |
-| `/about` | Explain operating model | Handoff problem, method, senior accountability | Start the conversation |
-| `/contact` | Low-friction intake | Short-description rule and scope-check process | Send inquiry |
-| `/privacy` | Public policy | Current privacy terms | Return to site |
-| `/terms` | Public policy | Current service/tool terms | Return to site |
-| `/inquiry/received` | Conversion confirmation | Submission confirmation and next event | Inspect work |
-
-No page called Services is required. Engagements explains the work in the language of client situations and deliverables.
-
-## Homepage assembly contract
-
-The homepage is a lobby, not a catalog. Assemble it in this order:
+Exact order:
 
 1. `PublicHeader`
-2. `MachinedFrame > Hero`
+2. `HomepageHero`
    - technical eyebrow;
-   - literal proposition;
-   - short explanation;
-   - `CrystalButton`: Inspect the work;
-   - `RecessedControl`: Describe the project;
-   - dimensional proof artifact occupying the opposite half.
+   - mixed-style four-line proposition;
+   - compact explanation;
+   - `CrystalButton`: Inspect the Work;
+   - secondary recessed action: Describe the Project;
+   - owl cutaway artifact.
 3. `ConfidenceStrip`
-   - 2–7 solar days;
-   - scoped by deliverables;
-   - no billable hours;
-   - no IP claims.
 4. `EngagementSelector`
-   - independent review;
-   - pitch decks;
-   - grant applications;
-   - IRB proposals;
-   - patent and invention;
-   - feasibility.
-5. `PanelWell > ProofCarousel`
-   - four representative outputs;
-   - one contextual accent;
-   - no invented client identity.
+   - Pitch Decks;
+   - IRB Proposals;
+   - Grant Applications;
+   - Patent Litigation;
+   - Feasibility Assessments;
+   - Due Diligence.
+5. `ExampleOutputsCarousel`
 6. `SelectedWork`
-   - three publication-authorized records.
 7. `DiagnosticCallout`
-   - for visitors unable to name the needed artifact.
-8. `PublicFooter`
 
-The first viewport proves engineering quality before asking for trust.
+At the native viewport, items 2–7 are visible in the first screenshot. No footer is inserted above them.
 
-## Pitch Synthase route contract
+## Application 2 — Pitch Synthase
 
-| Stage | Route | Required decision |
-|---|---|---|
-| 1 | `/pitch-synthase/source` | Audience, elevator pitch, intended impressions, sources, images, slide count |
-| 2 | `/pitch-synthase/approaches` | Select one of four generated narrative approaches |
-| 3 | `/pitch-synthase/preview` | Review and refine representative slides |
-| 4 | `/pitch-synthase/outline` | Approve full slide sequence and inference permissions |
-| 5 | `/pitch-synthase/generate` | Generate, verify, revise, and export the final deck |
+Purpose: take bounded source material through analysis, narrative selection, structure, synthesis, rendering, review, and export.
 
-Wizard state is one versioned object. Routes do not maintain divergent copies. Each stage reads the same source record and writes only its owned fields.
+### UI route contract
 
-Required application components:
+| Step | Label | Route | User decision / state |
+|---:|---|---|---|
+| 1 | Project Setup | `/pitch-synthase/wizard/project` | Audience, pitch, intended impression, sources, slide count |
+| 2 | Reference Analysis | `/pitch-synthase/wizard/reference` | Decide what aesthetic, product, factual, and mockup information carries forward |
+| 3 | Narrative Foundation | `/pitch-synthase/wizard/narrative` | Select or refine one of four strategic approaches |
+| 4 | Slide Structure | `/pitch-synthase/wizard/structure` | Approve ordered slide plan and aspect policies |
+| 5 | Content Synthesis | `/pitch-synthase/wizard/content` | Inspect synthesized narrative, claims, and source/inference boundaries |
+| 6 | Visual Crafting | `/pitch-synthase/wizard/visual` | Render slides, monitor generation, and resolve verification findings |
+| 7 | Review & Export | `/pitch-synthase/wizard/review` | Edit, approve, finalize, and download deliverables |
 
-- `InstrumentHeader`
+The exact seven labels are public product language and are not implementation placeholders.
+
+### Backend pipeline mapping
+
+The UI steps group the backend DAG without rewriting it:
+
+| UI step | Backend ownership |
+|---|---|
+| Project Setup | job creation, text/document intake |
+| Reference Analysis | image scan, image analysis, intake options |
+| Narrative Foundation | approach drafting, previews, human selection |
+| Slide Structure | pitch-aspect modes, slide count, storyboard approval |
+| Content Synthesis | Anchor Writer, Deck Builder, source/inference canon |
+| Visual Crafting | per-slide generation, specialist verification, regeneration |
+| Review & Export | human review, finalization, PDF/PPTX/HTML/Markdown/PNG package |
+
+The UI state is one versioned wizard record. Routes do not keep divergent copies.
+
+### Required instrument components
+
+- `InstrumentFrame`
+- `ProductIdentity`
 - `WizardStepper`
-- `ContextRail`
-- `SourceIntake`
+- `WizardTitleBand`
+- `ReferenceMediaPanel`
+- `AnalysisResultsPanel`
+- `ExplanationRail`
+- `CarryForwardControl`
 - `ApproachCard`
 - `ApproachComparison`
-- `SlidePreview`
+- `SlideStructureEditor`
+- `InferenceControls`
+- `ContentInspector`
+- `GenerationStatus`
 - `SlideTray`
 - `SlideInspector`
-- `InferenceControls`
 - `VerificationStatus`
+- `ReviewEditor`
 - `ExportBar`
+- `InstrumentFooterRail`
 
-All material surfaces in these components come from `@intelluric/material-system`.
+All repeated surfaces compose canonical material primitives.
+
+## State boundaries
+
+Each wizard step owns only these fields:
+
+```text
+project:
+  audience
+  elevator_pitch
+  conveys
+  doc_text
+  slide_count
+
+reference:
+  supporting_image
+  image_analysis
+  use_aesthetic
+  use_product_form
+  use_facts
+  infer_mockup
+  infer_prototype
+
+narrative:
+  approach_candidates
+  selected_approach
+  selected_archetype
+
+structure:
+  pitch_aspect_modes
+  excepted_inference_elements
+  ordered_storyboard
+
+content:
+  anchor_narrative
+  authorized_inferences
+  source_conflicts
+  content_approval
+
+visual:
+  visual_grammar
+  generated_slides
+  verification_reports
+  corrective_regenerations
+
+review:
+  reviewed_slides
+  universal_instruction
+  final_manifest
+  export_artifacts
+```
+
+A later step may read earlier state. It may not silently overwrite it.
 
 ## Shared primitive contract
 
-The following are the only constructors for repeated physical surfaces:
+Repeated surfaces are limited to:
 
 - `MachinedFrame`
 - `PanelWell`
@@ -165,75 +226,82 @@ The following are the only constructors for repeated physical surfaces:
 - `TechnicalLabel`
 - `TechnicalOverlay`
 
-Applications compose these primitives. Applications do not recreate their background, border, shadow, texture, bevel, or illumination CSS.
+Unique layout components may compose these primitives but may not reimplement their physical recipes.
 
-## Responsive contract
+## Asset classes
 
-### Desktop: 1024 px and above
-
-- Public maximum content width: token value `layout.content-max`.
-- Hero uses two columns when a dimensional proof artifact exists.
-- Pitch Synthase retains context rail and inspector.
-- Dense rows remain horizontal only while all content fits without truncation.
-
-### Tablet: 768–1023 px
-
-- Hero may stack copy above the artifact.
-- Context rail becomes a horizontal summary.
-- Inspector moves below the dominant work surface.
-- Minimum interactive target remains 44 CSS pixels.
-
-### Mobile: below 768 px
-
-- One content column.
-- Public navigation becomes a menu control.
-- Instrument progress remains visible but labels may collapse.
-- No horizontally clipped page-level tray.
-- Carousels may scroll horizontally with visible continuation affordance.
-- Large artifacts crop intentionally inside their own bounded region.
-- Material depth remains; mobile is not a flat alternate theme.
-
-## Asset contract
-
-Use three asset classes:
-
-1. Shared procedural assets — grain, etching, technical grids, masks. Generated once and referenced by tokens or the material system.
-2. Page-specific proof assets — risk maps, claim/evidence matrices, document excerpts, slide previews. Stored with their record.
-3. Hero dimensional assets — owl cutaway, stacked plates, document case, technical apparatus. Transparent standalone images with no embedded page copy.
-
-No screenshot of an entire mockup ships as a webpage. No generated asset contains navigation, buttons, or editable text.
+1. **Shared procedural assets** — grain, grid, etching, masks.
+2. **Route content assets** — thumbnails, diagrams, record art, uploaded images.
+3. **Hero dimensional assets** — owl cutaway and branch.
+4. **Primary fixtures** — visual-regression evidence only; never shipped as whole-page UI.
 
 ## Copy boundary
 
-Public copy is data, not JSX improvisation. Approved copy lives in `packages/content` and is imported by route. Components may provide accessible labels and state descriptions; they may not rewrite headlines, service names, prices, timelines, verdicts, or case-study facts.
+Public copy and wizard labels are data, not JSX improvisation.
+
+Components may create accessible descriptions and state announcements. They may not rewrite:
+
+- the homepage hero;
+- navigation labels;
+- service names;
+- confidence-strip terms;
+- seven wizard step labels;
+- fixed CTA hierarchy.
+
+## Responsive contract
+
+### Desktop — `>= 1024 px`
+
+- converge on primary fixtures at `1448 × 1086`;
+- homepage uses fixed evidence bands;
+- wizard retains three-column Step 2 workspace;
+- stepper shows all seven labels;
+- minimum interactive target remains `42–44 px`.
+
+### Tablet — `768–1023 px`
+
+- hero may stack;
+- wizard workspace becomes two columns;
+- explanation rail moves below;
+- footer state remains persistent;
+- material depth remains.
+
+### Mobile — `< 768 px`
+
+- one column;
+- public nav becomes menu;
+- progress remains visible;
+- carousels scroll with continuation affordance;
+- panels stack without losing labels or state;
+- no flat alternate theme.
 
 ## Migration rule
 
-Legacy code enters this repository only through an inventory containing:
+Legacy code enters only through an inventory containing:
 
-- source repository and path;
-- destination package and path;
+- source repository/path;
+- destination;
 - behavior retained;
 - behavior rejected;
 - dependencies;
-- secrets or environment bindings;
+- secrets/environment bindings;
 - acceptance test.
 
-No legacy stylesheet, theme provider, page shell, or copy block migrates wholesale.
+No legacy shell, stylesheet, theme provider, or copy block migrates wholesale.
 
-## Frontend completion proof
+## Completion proof
 
 Frontend architecture is complete only when:
 
-1. both applications consume the same generated token package;
-2. both applications consume the same material-system package;
-3. every required route exists and has one named purpose;
-4. the primary CTA on every route reaches a real next state;
-5. desktop and mobile contract screenshots pass visual comparison;
-6. all interactive controls work by keyboard and touch;
-7. no route contains raw shared material CSS;
-8. no placeholder, generated filler, or unapproved public copy is present;
-9. no console error or broken asset appears on a public route;
-10. the production build and route-level smoke tests pass.
+1. both applications consume the same token and material packages;
+2. all routes exist;
+3. real backend state reaches each wizard step;
+4. primary CTAs reach real next states;
+5. native-view visual regression passes;
+6. keyboard and touch operation pass;
+7. no raw shared material CSS exists in an application;
+8. no placeholder or invented public copy remains;
+9. no broken asset or console error remains;
+10. production build and route smoke tests pass.
 
-Anything short of those ten conditions is an implementation checkpoint, not a finished frontend.
+Anything less is an implementation checkpoint.
