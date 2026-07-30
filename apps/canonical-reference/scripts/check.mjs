@@ -1,4 +1,3 @@
-import { createHash } from "node:crypto";
 import { readFile, readdir, stat } from "node:fs/promises";
 import { extname, join, relative, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -8,7 +7,6 @@ const appRoot = resolve(fileURLToPath(new URL("..", import.meta.url)));
 const repoRoot = resolve(appRoot, "../..");
 const dist = join(appRoot, "dist");
 const failures = [];
-const expectedCanonHash = "53591502d254040929b05cbe1a85f076d5477715c9e8dcb312c2f5bdd9d80258";
 
 const exists = async path => {
   try {
@@ -18,8 +16,6 @@ const exists = async path => {
     return false;
   }
 };
-
-const sha256 = bytes => createHash("sha256").update(bytes).digest("hex");
 
 async function walk(directory) {
   const files = [];
@@ -32,30 +28,6 @@ async function walk(directory) {
   return files;
 }
 
-function jpegDimensions(bytes) {
-  if (bytes[0] !== 0xff || bytes[1] !== 0xd8) return null;
-  let offset = 2;
-  while (offset + 8 < bytes.length) {
-    if (bytes[offset] !== 0xff) {
-      offset += 1;
-      continue;
-    }
-    const marker = bytes[offset + 1];
-    offset += 2;
-    if (marker === 0xd8 || marker === 0xd9) continue;
-    const length = bytes.readUInt16BE(offset);
-    if (length < 2 || offset + length > bytes.length) return null;
-    if ([0xc0, 0xc1, 0xc2, 0xc3, 0xc5, 0xc6, 0xc7, 0xc9, 0xca, 0xcb, 0xcd, 0xce, 0xcf].includes(marker)) {
-      return {
-        height: bytes.readUInt16BE(offset + 3),
-        width: bytes.readUInt16BE(offset + 5),
-      };
-    }
-    offset += length;
-  }
-  return null;
-}
-
 const tracked = await walk(repoRoot);
 
 const required = [
@@ -63,8 +35,6 @@ const required = [
   "AGENTS.md",
   "README.md",
   "package.json",
-  "canon/README.md",
-  "canon/homepage-canon.jpg",
   "ui/visual-system.css",
   "ui/fonts/eb-garamond-italic-400.ttf",
   "ui/fonts/eb-garamond-normal-400.ttf",
@@ -83,16 +53,11 @@ for (const path of required) {
   if (!tracked.includes(path)) failures.push(`Missing required authority file: ${path}`);
 }
 
-const forbiddenRoots = ["contracts/", "packages/", "reference/", "scripts/", "staging/"];
+const forbiddenRoots = ["canon/", "contracts/", "packages/", "reference/", "scripts/", "staging/"];
 for (const path of tracked) {
   if (forbiddenRoots.some(root => path.startsWith(root))) {
     failures.push(`Superseded authority surface remains tracked: ${path}`);
   }
-}
-
-const pageCanons = tracked.filter(path => path.startsWith("canon/") && /\.(?:jpe?g|png|webp)$/i.test(path));
-if (pageCanons.length !== 1 || pageCanons[0] !== "canon/homepage-canon.jpg") {
-  failures.push(`Expected exactly one page-level visual canon, found: ${pageCanons.join(", ") || "none"}`);
 }
 
 const executablePages = tracked.filter(path => path.endsWith("/index.html") || path === "index.html");
@@ -105,13 +70,6 @@ if (stylesheets.length !== 1 || stylesheets[0] !== "ui/visual-system.css") {
   failures.push(`Expected exactly one visual stylesheet, found: ${stylesheets.join(", ") || "none"}`);
 }
 
-const canon = await readFile(join(repoRoot, "canon/homepage-canon.jpg"));
-if (sha256(canon) !== expectedCanonHash) failures.push("Canonical screenshot bytes changed");
-const dimensions = jpegDimensions(canon);
-if (!dimensions || dimensions.width !== 1280 || dimensions.height !== 960) {
-  failures.push(`Canonical screenshot must remain 1280x960, found ${dimensions ? `${dimensions.width}x${dimensions.height}` : "an unreadable image"}`);
-}
-
 const html = await readFile(join(appRoot, "index.html"), "utf8");
 const css = await readFile(join(repoRoot, "ui/visual-system.css"), "utf8");
 if (!html.includes('href="visual-system.css"')) failures.push("Reference page must consume ui/visual-system.css");
@@ -122,15 +80,43 @@ for (const match of html.matchAll(/<a\b[^>]*href="([^"]*)"/gi)) {
   if (match[1] !== "#fixture-action") failures.push(`Reference action has a production destination: ${match[1]}`);
 }
 
-for (const token of ["--material-grain", "--material-sheen", "--material-edge", "--material-depth", "--material-frame"]) {
-  if (!css.includes(`${token}:`)) failures.push(`Missing structural material token: ${token}`);
+for (const token of ["--frame-width", "--frame-radius", "--frame-inner-radius", "--surface-radius", "--mineral-noise"]) {
+  if (!css.includes(`${token}:`)) failures.push(`Missing parametric material token: ${token}`);
 }
 
-for (const selector of [".hero-frame", ".scope-strip", ".service-well", ".service-card", ".sample-tray", ".sample-card", ".closing-panel"]) {
-  const escaped = selector.replace(".", "\\.");
-  const rule = css.match(new RegExp(`${escaped}\\{([^}]*)\\}`));
-  if (!rule || !rule[1].includes("background-image:") || !rule[1].includes("box-shadow:")) {
-    failures.push(`${selector} must have procedural material and depth, not a flat fill`);
+for (const fragment of [
+  "stitchTiles='stitch'",
+  ".structural-frame{",
+  ".structural-frame__recess{",
+  ".mineral-surface{",
+  ".mineral-surface--inset{",
+  ".mineral-button{",
+  ".mineral-button--neutral{",
+]) {
+  if (!css.includes(fragment)) failures.push(`Missing parametric material primitive: ${fragment}`);
+}
+
+for (const tone of ["charcoal", "cobalt", "cyan", "emerald", "amber", "violet", "copper"]) {
+  if (!css.includes(`mineral-surface--${tone}`)) failures.push(`Missing mineral tone: ${tone}`);
+}
+
+for (const fragment of [
+  'class="structural-frame hero-shell"',
+  'class="structural-frame__recess hero-frame"',
+  'class="hero__visual"',
+  'class="hero__owl"',
+  'class="sample-card__content"',
+  'class="sample-card__image"',
+  "mineral-surface--charcoal",
+  "mineral-button--cobalt",
+  "mineral-button--neutral",
+]) {
+  if (!html.includes(fragment)) failures.push(`Reference does not consume material primitive: ${fragment}`);
+}
+
+for (const superseded of ["--material-grain", "--material-frame", " crystal", " recessed", "data-accent=", "data-fixture-content", "hero-art", "hero-copy", "sample-text"]) {
+  if (css.includes(superseded) || html.includes(superseded)) {
+    failures.push(`Superseded one-off material recipe remains: ${superseded}`);
   }
 }
 
@@ -157,7 +143,7 @@ for (const output of [
   "index.html",
   "app.js",
   "visual-system.css",
-  "assets/hero-owl.jpg",
+  "assets/intelluric-owl-cutaway.webp",
   "assets/sample-investor.jpg",
   "assets/sample-research.jpg",
   "assets/sample-feasibility.jpg",
@@ -175,4 +161,4 @@ if (failures.length) {
   process.exit(1);
 }
 
-console.log("Visual authority is singular, content-independent, and buildable.");
+console.log("Parametric visual authority is singular, reusable, and buildable.");

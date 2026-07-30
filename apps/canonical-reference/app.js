@@ -63,9 +63,9 @@
     const samples = serviceSamples[serviceId] || serviceSamples.pitch;
     grid.innerHTML = samples.map((sample, index) => {
       const [title, description, meta] = sample;
-      return `<a class="sample-card" href="#fixture-action" data-action-id="sample-${serviceId}-${index + 1}">
-        <span class="sample-text"><h3>${escapeHtml(title)}</h3><p>${escapeHtml(description)}</p><small>${escapeHtml(meta)}</small></span>
-        <img src="${assets[index % assets.length]}" alt="" aria-hidden="true" />
+      return `<a class="mineral-surface mineral-surface--charcoal sample-card" href="#fixture-action" data-action-id="sample-${serviceId}-${index + 1}">
+        <span class="sample-card__content"><h3>${escapeHtml(title)}</h3><p>${escapeHtml(description)}</p><span>${escapeHtml(meta)}</span></span>
+        <img class="sample-card__image" src="${assets[index % assets.length]}" alt="" aria-hidden="true" />
       </a>`;
     }).join('');
     heading.textContent = 'SAMPLE WORK';

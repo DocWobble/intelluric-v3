@@ -22,4 +22,4 @@ for (const name of await readdir(join(repoRoot, "ui/fonts"))) {
   await copyFile(join(repoRoot, "ui/fonts", name), join(dist, "fonts", name));
 }
 
-console.log(`Built canonical visual reference at ${dist}`);
+console.log(`Built parametric style prototype at ${dist}`);
