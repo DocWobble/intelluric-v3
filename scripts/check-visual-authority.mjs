@@ -1,4 +1,3 @@
-import { createHash } from "node:crypto";
 import { readdir, readFile, stat } from "node:fs/promises";
 import { extname, join, relative, resolve } from "node:path";
 
@@ -17,52 +16,120 @@ const walk = async (dir) => {
 const repoPath = (path) => relative(root, path).replaceAll("\\", "/");
 
 const required = [
+  "AGENTS.md",
   "contracts/VISUAL_AUTHORITY.md",
-  "contracts/HOMEPAGE_REVISION_CONTRACT.md",
-  "contracts/BASELINE_SCOPE.md",
-  "contracts/SCREEN_GEOMETRY_CONTRACT.md",
   "contracts/VISUAL_SYSTEM_CONTRACT.md",
+  "contracts/CONSUMER_BOUNDARIES.md",
   "contracts/FRONTEND_ARCHITECTURE.md",
+  "contracts/HOMEPAGE_REVISION_CONTRACT.md",
+  "contracts/SCREEN_GEOMETRY_CONTRACT.md",
   "contracts/PIXEL_ACCEPTANCE_CONTRACT.md",
   "contracts/IMPLEMENTATION_HANDOFF.md",
-  "contracts/baselines/v2/FRONTEND_ARCHITECTURE.md",
-  "contracts/baselines/v2/SCREEN_GEOMETRY_CONTRACT.md",
-  "contracts/baselines/v2/PIXEL_ACCEPTANCE_CONTRACT.md",
-  "contracts/baselines/v2/visual-contract.v2.full.json",
+  "reference/visual-contract/README.md",
   "reference/visual-contract/SCREENSHOT_MANIFEST.md",
   "reference/visual-contract/SOURCE_PROVENANCE.md",
-  "reference/visual-contract/visual-contract.v2.json",
   "reference/visual-contract/visual-contract.v3.json",
-  "reference/visual-contract/INTELLURIC-HOMEPAGE-OPTIMIZED-2026-07-29.preview.webp",
-  "reference/visual-contract/source/encoded-fixtures.json",
+  "packages/design-tokens/src/semantic.json",
   "packages/material-system/src/primitives.tsx"
 ];
-for (const file of required) if (!(await exists(join(root, file)))) failures.push(`Missing authority file: ${file}`);
+for (const file of required) if (!(await exists(join(root, file)))) failures.push(`Missing design authority file: ${file}`);
 
-const previewPath = join(root, "reference/visual-contract/INTELLURIC-HOMEPAGE-OPTIMIZED-2026-07-29.preview.webp");
-if (await exists(previewPath)) {
-  const actual = createHash("sha256").update(await readFile(previewPath)).digest("hex");
-  if (actual !== "66a9365fa9bd8e7bcfb00a7aa4f28dd169d5086566d4bcd97160a4e1308f43db") failures.push(`Optimized homepage preview hash mismatch: ${actual}`);
+const legacyBaselineFiles = await walk(join(root, "contracts/baselines/v2"));
+if (legacyBaselineFiles.length) {
+  failures.push(`Stale product baseline remains under contracts/baselines/v2: ${legacyBaselineFiles.map(repoPath).join(", ")}`);
 }
 
 const contract = JSON.parse(await readFile(join(root, "reference/visual-contract/visual-contract.v3.json"), "utf8"));
-if (contract.schema_version !== "3.0.0" || contract.status !== "binding") failures.push("visual-contract.v3.json must be binding schema 3.0.0");
-if ((contract.authority?.primary ?? []).length !== 2) failures.push("v3 must identify exactly two primary routes");
-const homepage = contract.authority.primary.find((item) => item.route === "/");
-if (homepage?.source_sha256 !== "b7a5d2fb39c86543c0b619ac8e5c3a729cb7de6cc0a3eefb629f89628a42ecc6") failures.push("Homepage source identity is not the optimized contract");
-const pitch = contract.authority.primary.find((item) => item.route === "/pitch-synthase/wizard/reference");
-if (pitch?.transport_sha256 !== "ac57f00a72df876ac7aa7431a399997422d92281b2d41a495f8abb7c035d3f53") failures.push("Pitch Synthase transport identity changed");
+if (contract.schema_version !== "3.1.0" || contract.status !== "binding") failures.push("visual-contract.v3.json must be binding schema 3.1.0");
+if (contract.scope !== "design_system_and_visual_contracts") failures.push("Machine contract scope must be design_system_and_visual_contracts");
+
+const expectedBuildOrder = [
+  "design_tokens",
+  "material_system",
+  "generic_component_patterns",
+  "public_site_frontend",
+  "pitch_synthase_frontend"
+];
+if (JSON.stringify(contract.build_order) !== JSON.stringify(expectedBuildOrder)) failures.push("Build order must remain token-first and material-system-first");
+
+if ((contract.authority?.primary ?? []).length !== 1) failures.push("Exactly one application-specific primary visual contract is allowed here");
+const homepage = contract.authority?.primary?.[0];
+if (homepage?.route !== "/" || homepage?.source_sha256 !== "b7a5d2fb39c86543c0b619ac8e5c3a729cb7de6cc0a3eefb629f89628a42ecc6") {
+  failures.push("The optimized homepage must remain the sole primary application-specific visual contract");
+}
+
+const instrumentSpecimen = (contract.authority?.style_specimens ?? []).find((item) => item.id === "instrument_style_specimen");
+if (!instrumentSpecimen || instrumentSpecimen.behavioral_authority !== false) failures.push("Instrument screenshot must be classified as a non-behavioral style specimen");
+
+const pitchConsumer = contract.consumers?.pitch_synthase;
+if (pitchConsumer?.source_of_truth !== "DocWobble/Pitch_Synthase_v2") failures.push("Pitch Synthase source of truth must be DocWobble/Pitch_Synthase_v2");
+if (pitchConsumer?.progress_model !== "data_driven_variable_count") failures.push("Pitch Synthase progress model must remain data-driven and variable-count");
+if (contract.pitch_synthase?.steps || pitchConsumer?.steps) failures.push("Pitch Synthase steps must not be duplicated in the design-system contract");
+
+const requiredForbidden = [
+  "routes",
+  "workflow_stage_names",
+  "workflow_stage_count",
+  "workflow_stage_order",
+  "backend_dag",
+  "api_payloads",
+  "product_state",
+  "payment_behavior",
+  "generation_behavior",
+  "review_behavior",
+  "verification_behavior",
+  "export_behavior"
+];
+for (const item of requiredForbidden) {
+  if (!(pitchConsumer?.forbidden_here ?? []).includes(item)) failures.push(`Missing Pitch Synthase consumer boundary: ${item}`);
+}
 
 const expectedNav = ["Services", "Sample Work", "How It Works", "About", "Resources", "Start a Project"];
 const expectedArtifacts = ["PITCH DECKS", "IRB PROPOSALS", "GRANT APPLICATIONS", "PATENT LITIGATION", "FEASIBILITY ASSESSMENTS", "TECHNICAL DUE DILIGENCE"];
-const expectedSteps = ["Project Setup", "Reference Analysis", "Narrative Foundation", "Slide Structure", "Content Synthesis", "Visual Crafting", "Review & Export"];
-if (JSON.stringify(contract.homepage?.navigation_labels) !== JSON.stringify(expectedNav)) failures.push("Homepage navigation differs from v3 contract");
-if (JSON.stringify(contract.homepage?.artifact_labels) !== JSON.stringify(expectedArtifacts)) failures.push("Homepage artifact taxonomy differs from v3 contract");
+if (JSON.stringify(contract.homepage?.navigation_labels) !== JSON.stringify(expectedNav)) failures.push("Homepage navigation differs from the approved composition");
+if (JSON.stringify(contract.homepage?.artifact_labels) !== JSON.stringify(expectedArtifacts)) failures.push("Homepage artifact taxonomy differs from the approved composition");
 if (contract.homepage?.interaction?.category_selection_navigation !== "none") failures.push("Artifact selection must update the tray without navigation");
-if (JSON.stringify(contract.pitch_synthase?.steps) !== JSON.stringify(expectedSteps)) failures.push("Pitch Synthase seven-step contract changed");
 
 const primitiveSource = await readFile(join(root, "packages/material-system/src/primitives.tsx"), "utf8");
-for (const name of contract.shared.material_primitives) if (!primitiveSource.includes(`function ${name}`)) failures.push(`Missing material primitive: ${name}`);
+for (const name of contract.shared?.material_primitives ?? []) {
+  if (!primitiveSource.includes(`function ${name}`)) failures.push(`Missing material primitive: ${name}`);
+}
+
+const staleProductTerms = [
+  "Project Setup",
+  "Reference Analysis",
+  "Narrative Foundation",
+  "Slide Structure",
+  "Content Synthesis",
+  "Visual Crafting",
+  "Review & Export",
+  "/pitch-synthase/wizard/reference",
+  "exact seven labels",
+  "seven-step workflow",
+  "backend-DAG mapping"
+];
+const activeAuthorityFiles = [
+  "README.md",
+  "AGENTS.md",
+  "contracts/VISUAL_AUTHORITY.md",
+  "contracts/VISUAL_SYSTEM_CONTRACT.md",
+  "contracts/CONSUMER_BOUNDARIES.md",
+  "contracts/FRONTEND_ARCHITECTURE.md",
+  "contracts/BASELINE_SCOPE.md",
+  "contracts/SCREEN_GEOMETRY_CONTRACT.md",
+  "contracts/PIXEL_ACCEPTANCE_CONTRACT.md",
+  "contracts/IMPLEMENTATION_HANDOFF.md",
+  "reference/visual-contract/README.md",
+  "reference/visual-contract/SCREENSHOT_MANIFEST.md",
+  "reference/visual-contract/SOURCE_PROVENANCE.md",
+  "reference/visual-contract/visual-contract.v3.json"
+];
+for (const relativePath of activeAuthorityFiles) {
+  const source = await readFile(join(root, relativePath), "utf8");
+  for (const term of staleProductTerms) {
+    if (source.includes(term)) failures.push(`Stale Pitch Synthase product requirement '${term}' in ${relativePath}`);
+  }
+}
 
 const allowedVisualRoots = [
   "packages/design-tokens/src/",
@@ -90,15 +157,8 @@ for (const file of [...await walk(join(root, "apps")), ...await walk(join(root, 
   }
 }
 
-const encodedManifest = JSON.parse(await readFile(join(root, "reference/visual-contract/source/encoded-fixtures.json"), "utf8"));
-const pitchFixture = encodedManifest.fixtures?.["1872091A-8BC0-4130-AEB8-8CF0D244ECD2.contract.webp"];
-if (!pitchFixture || pitchFixture.sha256 !== "ac57f00a72df876ac7aa7431a399997422d92281b2d41a495f8abb7c035d3f53") failures.push("Pitch Synthase encoded fixture manifest changed");
-
-const v2 = JSON.parse(await readFile(join(root, "reference/visual-contract/visual-contract.v2.json"), "utf8"));
-if (v2.status !== "historical" || v2.superseded_by !== "visual-contract.v3.json") failures.push("v2 current-path contract must be explicitly historical");
-
 if (failures.length) {
-  console.error(`Visual authority check failed:\n- ${failures.join("\n- ")}`);
+  console.error(`Design authority check failed:\n- ${failures.join("\n- ")}`);
   process.exit(1);
 }
-console.log("Visual authority is singular: optimized homepage v3 with full scoped v2 Pitch Synthase baseline preserved.");
+console.log("Design authority is token-first, material-system-first, and free of duplicated Pitch Synthase product requirements.");
