@@ -1,6 +1,14 @@
 {
-  "schema_version": "3.0.0",
+  "schema_version": "3.1.0",
   "status": "binding",
+  "scope": "design_system_and_visual_contracts",
+  "build_order": [
+    "design_tokens",
+    "material_system",
+    "generic_component_patterns",
+    "public_site_frontend",
+    "pitch_synthase_frontend"
+  ],
   "authority": {
     "primary": [
       {
@@ -22,19 +30,47 @@
             "src/styles.css"
           ]
         }
-      },
+      }
+    ],
+    "style_specimens": [
       {
-        "id": "pitch_synthase_reference_analysis_desktop",
-        "route": "/pitch-synthase/wizard/reference",
+        "id": "instrument_style_specimen",
         "source_file": "1872091A-8BC0-4130-AEB8-8CF0D244ECD2.jpeg",
         "source_sha256": "fc77b6444a1f5ba0caf532716cd9cda4e567f87b1d342dd117d6a86de42d42a2",
-        "transport_file": "1872091A-8BC0-4130-AEB8-8CF0D244ECD2.contract.webp",
-        "transport_sha256": "ac57f00a72df876ac7aa7431a399997422d92281b2d41a495f8abb7c035d3f53"
+        "behavioral_authority": false,
+        "allowed_inference": [
+          "material_depth",
+          "density",
+          "generic_panel_anatomy",
+          "typography",
+          "control_treatment"
+        ]
       }
     ]
   },
   "shared": {
-    "material_primitives": ["MachinedFrame", "PanelWell", "RaisedCard", "RecessedControl", "CrystalButton", "TechnicalLabel", "TechnicalOverlay"]
+    "material_primitives": [
+      "MachinedFrame",
+      "PanelWell",
+      "RaisedCard",
+      "RecessedControl",
+      "CrystalButton",
+      "TechnicalLabel",
+      "TechnicalOverlay"
+    ],
+    "generic_patterns": [
+      "PublicHeader",
+      "EditorialShell",
+      "InstrumentFrame",
+      "ProgressIndicator",
+      "TaskSurface",
+      "ContextRail",
+      "SelectionGrid",
+      "PreviewCard",
+      "GenerationStatus",
+      "ReviewSurface",
+      "DeliveryPanel"
+    ]
   },
   "homepage": {
     "navigation_labels": ["Services", "Sample Work", "How It Works", "About", "Resources", "Start a Project"],
@@ -53,7 +89,29 @@
       "carousel": ["previous", "next", "touch_scroll", "trackpad_scroll", "keyboard", "scroll_snap", "reduced_motion"]
     }
   },
-  "pitch_synthase": {
-    "steps": ["Project Setup", "Reference Analysis", "Narrative Foundation", "Slide Structure", "Content Synthesis", "Visual Crafting", "Review & Export"]
+  "consumers": {
+    "public_site": {
+      "owned_here": ["visual_composition", "component_anatomy", "responsive_visual_behavior"],
+      "external": ["backend_submission", "storage", "delivery", "analytics", "payment", "content_management"]
+    },
+    "pitch_synthase": {
+      "source_of_truth": "DocWobble/Pitch_Synthase_v2",
+      "owned_here": ["tokens", "materials", "generic_component_anatomy", "visual_acceptance"],
+      "forbidden_here": [
+        "routes",
+        "workflow_stage_names",
+        "workflow_stage_count",
+        "workflow_stage_order",
+        "backend_dag",
+        "api_payloads",
+        "product_state",
+        "payment_behavior",
+        "generation_behavior",
+        "review_behavior",
+        "verification_behavior",
+        "export_behavior"
+      ],
+      "progress_model": "data_driven_variable_count"
+    }
   }
 }
