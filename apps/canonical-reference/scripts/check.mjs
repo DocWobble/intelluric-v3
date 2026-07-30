@@ -96,6 +96,16 @@ for (const fragment of [
   if (!css.includes(fragment)) failures.push(`Missing parametric material primitive: ${fragment}`);
 }
 
+for (const fragment of [
+  "Compact instrument-panel mode preserves the overview",
+  "--frame-width:7px",
+  "grid-template-columns:repeat(4,minmax(0,1fr))",
+  "grid-template-columns:repeat(3,minmax(0,1fr))",
+  "grid-auto-columns:calc(50% - 3px)",
+]) {
+  if (!css.includes(fragment)) failures.push(`Missing compact mobile overview contract: ${fragment}`);
+}
+
 for (const tone of ["charcoal", "cobalt", "cyan", "emerald", "amber", "violet", "copper"]) {
   if (!css.includes(`mineral-surface--${tone}`)) failures.push(`Missing mineral tone: ${tone}`);
 }
