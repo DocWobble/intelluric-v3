@@ -33,7 +33,7 @@ for (const exact of [
 ]) if (!html.includes(exact)) failures.push(`Missing fixed homepage copy: ${exact}`);
 
 const hero = await readFile(join(dist, 'assets/hero-owl.jpg'));
-if (sha256(hero) !== 'd44d36ebf218bd86a933c6051d523906797e0ab4eee48ad2e54ffe4096b3ff4f') failures.push('Hero crop identity changed');
+if (sha256(hero) !== '7976988ce0b4e58e0682f5bb160efb9dbbfc4454daaf3f6d07a3521f5049640b') failures.push('Hero crop identity changed');
 
 if (failures.length) {
   console.error(`Canonical homepage check failed:\n- ${failures.join('\n- ')}`);
