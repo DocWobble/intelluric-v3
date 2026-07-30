@@ -1,43 +1,31 @@
 # Screenshot Source Provenance
 
-## Primary homepage
+## Optimized public homepage
 
-The exact homepage bytes supplied in the implementation conversation are already stored as:
+Supplied source:
 
-`DECF9777-2952-4B46-A439-DF4BE7F67DEF.jpeg`
+- filename: `contract-reference.jpeg`
+- native dimensions: `1448 × 1086`
+- byte size: `552,778`
+- SHA-256: `b7a5d2fb39c86543c0b619ac8e5c3a729cb7de6cc0a3eefb629f89628a42ecc6`
+- source package: `intelluric-ui-contract-729.zip`
+- source package SHA-256: `bca746aff822eb2ea6b6df270d1b7898e92912ced4a9f23997efef034e3fec03`
 
-Native size: `1448 × 1086`  
-SHA-256: `e8c3fba4d380f8bb60fa4254915201bdd3aac89d51e4dcdeaae5baac687508fe`
+Repository transport preview:
 
-The separately uploaded file `0C18EFB6-E2C4-466C-9767-CF68EE29DFEC.jpeg` has the same SHA-256 digest, proving byte identity.
+- `INTELLURIC-HOMEPAGE-OPTIMIZED-2026-07-29.preview.webp`
+- dimensions: `512 × 384`
+- SHA-256: `66a9365fa9bd8e7bcfb00a7aa4f28dd169d5086566d4bcd97160a4e1308f43db`
 
-## Primary Pitch Synthase screen
+The exact source hash is the provenance identity. The transport preview exists for repository review and must not be treated as the native pixel-regression master.
 
-The Step 2 reference-analysis screenshot was supplied directly in the implementation conversation on 2026-07-27.
+## Pitch Synthase
 
-Original source:
+Source and transport identities remain as previously recorded:
 
-- filename: `1872091A-8BC0-4130-AEB8-8CF0D244ECD2.jpeg`
-- native size: `1448 × 1086`
-- source SHA-256: `fc77b6444a1f5ba0caf532716cd9cda4e567f87b1d342dd117d6a86de42d42a2`
-
-Repository transport fixture:
-
-- filename: `1872091A-8BC0-4130-AEB8-8CF0D244ECD2.contract.webp`
-- native size: `1448 × 1086`
-- fixture SHA-256: `ac57f00a72df876ac7aa7431a399997422d92281b2d41a495f8abb7c035d3f53`
-- encoding: WebP quality 75, dimensions unchanged
-
-The repository fixture is a transport copy for visual inspection and regression geometry. The original JPEG source hash remains the provenance identity. The measured geometry and machine contract were derived from the original source, not from a rescaled image.
-
-The transport fixture is committed as ordered base64 source shards under `reference/visual-contract/source/` and is materialized by:
-
-```bash
-npm run visual:hydrate
-```
+- source JPEG SHA-256: `fc77b6444a1f5ba0caf532716cd9cda4e567f87b1d342dd117d6a86de42d42a2`
+- transport WebP SHA-256: `ac57f00a72df876ac7aa7431a399997422d92281b2d41a495f8abb7c035d3f53`
 
 ## Handling rule
 
-Primary source identity is immutable. Do not resize, crop, annotate, or overwrite source records. Derived transport fixtures, crops, and isolated runtime artwork use different filenames and never replace the recorded source identity.
-
-Supplemental and historical fixture provenance remains recorded in `SCREENSHOT_MANIFEST.md`. Historical Pitch Synthase images have no implementation authority.
+Source identity is immutable. Derived previews, crops, and runtime art receive distinct filenames and hashes. The old homepage source is historical and cannot silently regain authority.
