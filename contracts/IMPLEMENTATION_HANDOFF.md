@@ -1,56 +1,39 @@
 # Frontend Implementation Handoff
 
-Status: **binding and implementation-ready**
+Status: **binding — v3 implementation target**
 
-## Authority state
+`main` is the canonical implementation branch. The optimized homepage revision supersedes the prior homepage contract; the Pitch Synthase Step 2 contract remains active.
 
-The frontend design phase is closed. Implementation begins from the following authority chain, in order:
+## Authority chain
 
 1. `contracts/VISUAL_AUTHORITY.md`
-2. `reference/visual-contract/SCREENSHOT_MANIFEST.md`
-3. The two primary fixtures named by that manifest
+2. primary source identities recorded there
+3. `contracts/HOMEPAGE_REVISION_CONTRACT.md`
 4. `contracts/SCREEN_GEOMETRY_CONTRACT.md`
-5. `contracts/VISUAL_SYSTEM_CONTRACT.md`
-6. `contracts/PIXEL_ACCEPTANCE_CONTRACT.md`
-7. `reference/visual-contract/visual-contract.v2.json`
-8. `contracts/FRONTEND_ARCHITECTURE.md`
-9. `packages/design-tokens/`
-10. `packages/material-system/`
+5. `reference/visual-contract/visual-contract.v3.json`
+6. `contracts/VISUAL_SYSTEM_CONTRACT.md`
+7. `contracts/FRONTEND_ARCHITECTURE.md`
+8. `contracts/PIXEL_ACCEPTANCE_CONTRACT.md`
+9. shared design tokens and material primitives
+10. approved content records
 
-The archived pre-realignment state is preserved at `archive/2026-07-27-pre-contract-realignment`. `main` is the canonical implementation branch.
+## Homepage target
 
-## Primary visual contracts
+Implement the staged optimized composition through the canonical production architecture. Preserve:
 
-### Public homepage
+- direct two-line proposition;
+- scope strip;
+- six artifact controls;
+- in-place filtered sample carousel;
+- integrated closing intake callout;
+- responsive behavior and commercial path.
 
-- Route: `/`
-- Native viewport: `1448 × 1086`
-- Fixture: `reference/visual-contract/DECF9777-2952-4B46-A439-DF4BE7F67DEF.jpeg`
-- Governs the public editorial shell, navigation, hero composition, owl framing, confidence strip, category row, proof carousel, selected-work row, and diagnostic callout.
+Do not import the staging page as a second app, preserve its monolithic CSS as production authority, or reintroduce the superseded selected-work/diagnostic bottom band.
 
-### Pitch Synthase — Reference Analysis
+## Pitch Synthase target
 
-- Route: `/pitch-synthase/wizard/reference`
-- Native viewport: `1448 × 1086`
-- Fixture: `reference/visual-contract/1872091A-8BC0-4130-AEB8-8CF0D244ECD2.contract.webp`
-- Governs the instrument shell, seven-step progress rail, heading/action geometry, reference-image well, analysis stack, contextual explanation rail, carry-forward controls, save state, and footer context.
+Preserve all seven labels, the public header, Step 2 instrument geometry, and existing backend ownership mapping.
 
-## Required wizard sequence
+## Completion
 
-1. Project Setup
-2. Reference Analysis
-3. Narrative Foundation
-4. Slide Structure
-5. Content Synthesis
-6. Visual Crafting
-7. Review & Export
-
-All seven routes inherit the Step 2 instrument shell. A step changes task content and state, not the shell’s material grammar or alignment system.
-
-## Implementation rule
-
-Agents reproduce observable geometry and finish from the primary fixtures. They do not redesign, simplify, flatten, modernize, reinterpret, or substitute a generic SaaS system. Repeated physical surfaces come only from `@intelluric/material-system`; scalar values come only from `@intelluric/design-tokens`.
-
-## Completion proof
-
-A page is not complete because it resembles the reference. Completion requires the regression artifacts, landmark tolerances, OCR checks, interaction states, responsive evidence, and similarity thresholds defined in `contracts/PIXEL_ACCEPTANCE_CONTRACT.md`. `npm run check` must pass before visual review.
+Implementation is complete only when `npm run check`, route tests, category/tray interaction tests, accessibility smoke tests, production build, and applicable visual comparisons pass. A report without repository-local remediation is not the deliverable.

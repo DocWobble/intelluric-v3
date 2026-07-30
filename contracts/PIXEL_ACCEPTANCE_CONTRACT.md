@@ -1,154 +1,58 @@
 # Pixel Acceptance Contract
 
-Status: **binding**
+Status: **binding — version 3**
 
-This contract defines proof that an implementation matches the primary screenshots rather than merely resembling them.
-
-## 1. Required captures
-
-Capture at:
-
-- viewport: `1448 × 1086`;
-- device pixel ratio: `1`;
-- browser zoom: `100%`;
-- color scheme: dark;
-- reduced motion: on for deterministic capture;
-- animation time: settled;
-- fonts: fully loaded;
-- no browser chrome in the capture.
-
-Required routes:
+## Required routes
 
 - `/`
 - `/pitch-synthase/wizard/reference`
 
-## 2. Forbidden shortcut
+Capture at `1448 × 1086`, DPR 1, 100% zoom, dark scheme, settled/reduced motion, fully loaded fonts, no browser chrome.
 
-A whole-page fixture, large screenshot crop containing editable UI, or canvas tracing of the screenshot is not an implementation.
+## Source handling
 
-Acceptance requires:
+Homepage native scoring requires the exact source whose SHA-256 is `b7a5d2fb39c86543c0b619ac8e5c3a729cb7de6cc0a3eefb629f89628a42ecc6`. The `512 × 384` repository preview is not a substitute for native pixel scoring.
 
-- semantic DOM;
-- real text;
-- real buttons;
-- real form controls;
-- keyboard focus;
-- responsive layout;
-- isolated content images only.
+Pitch Synthase scoring continues against its unchanged primary fixture.
 
-## 3. Geometry tolerances
+## Forbidden shortcut
 
-At the native viewport:
+Whole-page raster backgrounds, large UI screenshot crops, canvas tracing, or image maps are not implementations. Acceptance requires semantic DOM, real text, real controls, focus, responsive layout, and isolated content images.
 
-- major region bounds: `±2 CSS px`;
-- repeated card widths/gaps: `±2 CSS px`;
-- text baselines: `±2 CSS px`;
-- icon aperture centers: `±2 CSS px`;
-- border/rim thickness: `±1 physical px`;
-- corner radius: `±2 CSS px`;
-- step node centers: `±2 CSS px`.
+## Homepage fixed-copy audit
 
-A one-pixel grid rounding residual may be distributed across repeated columns.
+Exact:
 
-## 4. Copy tolerances
+- header labels;
+- hero eyebrow, headline, body, and actions;
+- four scope-strip labels;
+- six artifact labels;
+- sample-tray labels;
+- closing callout title and actions.
 
-These must be exact:
-
-- visible navigation labels;
-- hero headline and body;
-- CTA labels;
-- confidence-strip labels;
-- service names;
-- section labels;
-- seven wizard step labels;
-- Step 2 title;
-- analysis row names;
-- carry-forward option names.
-
-Dynamic example records may be replaced only through approved content data while preserving card geometry and density.
-
-## 5. Typography proof
-
-Reject when:
-
-- a heading wraps differently at the native viewport;
-- italic and upright hero lines are merged;
-- fallback fonts visibly change width or baseline;
-- technical labels lose tracking or uppercase;
-- body text becomes lower contrast than the fixture;
-- text is shrunk to conceal layout mismatch.
-
-## 6. Material proof
-
-The following must remain separately legible:
-
-- canvas field;
-- outer groove;
-- warm structural hairline;
-- inner frame line;
-- panel well;
-- raised card;
-- crystal rim;
-- crystal internal reflection;
-- contact shadow;
-- contextual edge bloom.
-
-Reject a surface represented by one fill, one border, and one shadow.
-
-## 7. Automated visual regression targets
-
-After deterministic capture:
-
-- structural landmark audit: all landmarks pass geometry tolerance;
-- OCR audit: fixed copy is exact;
-- global SSIM target: `>= 0.985`;
-- non-artwork structural SSIM target: `>= 0.992`;
-- pixel outlier budget: no more than `0.75%` of unmasked pixels with per-channel difference greater than `16/255`;
-- flat-field sampled color delta: CIEDE2000 `<= 3.0`;
-- no single contiguous mismatch region larger than `1.0%` of the viewport outside declared artwork masks.
-
-Artwork masks may cover:
-
-- owl/branch pixels;
-- example-output thumbnail imagery;
-- uploaded reference-image pixels.
-
-Masks may not cover frames, text, buttons, labels, controls, or panel geometry.
-
-## 8. Interaction proof
+## Homepage interaction audit
 
 Required:
 
-- all actions receive visible keyboard focus;
-- switches expose checked state;
-- stepper exposes current step;
-- disabled controls are distinguishable without opacity-only communication;
-- hover/focus does not shift surrounding geometry;
-- reduced-motion mode preserves all state;
-- Help, Back, Next, and primary homepage actions have real targets.
+- six controls expose selected state;
+- category selection does not navigate away;
+- selected category and tray label agree;
+- every visible example belongs to the selected category;
+- previous/next, touch, trackpad, and keyboard interaction operate the carousel;
+- category change preserves layout and announces updated content;
+- reduced-motion mode preserves state;
+- canonical artifact links remain real and crawlable.
 
-## 9. Responsive proof
+## Geometry and material proof
 
-Desktop fidelity does not excuse fixed-canvas implementation.
+At native desktop width, source-derived region edges and repeated component geometry target `±2 CSS px`; structural lines target `±1 physical px`. Material layers must remain separately legible: canvas, groove, warm hairline, frame face, panel well, raised card, crystal state, contact shadow, and bounded content art.
 
-Also test:
+## Responsive proof
 
-- `1024 × 768`;
-- `768 × 1024`;
-- `390 × 844`.
+Also test `1024 × 768`, `768 × 1024`, and `390 × 844`. Responsive captures are judged for hierarchy, state visibility, material persistence, carousel operability, and absence of clipping.
 
-Responsive captures are evaluated for hierarchy, visibility, material persistence, and absence of clipping. They are not required to preserve desktop coordinates.
+## Acceptance artifact
 
-## 10. Acceptance artifact
+Every implementation PR includes source/implementation overlays, landmark report, fixed-copy report, interaction report, accessibility smoke result, responsive captures, declared artwork masks, and explanations for remaining mismatches.
 
-Every implementation PR must include:
-
-- before/after overlay for each primary route;
-- landmark report;
-- OCR fixed-copy report;
-- visual-regression metrics;
-- accessibility smoke result;
-- list of declared artwork masks;
-- explanation of every remaining diff above threshold.
-
-“Visually close” is not an acceptance result.
+Native homepage SSIM/pixel-difference claims are prohibited until the exact source bytes are materialized in the test environment.

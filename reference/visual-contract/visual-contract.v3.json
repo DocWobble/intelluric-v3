@@ -1,0 +1,52 @@
+{
+  "schema_version": "3.0.0",
+  "status": "binding",
+  "authority": {
+    "primary": [
+      {
+        "id": "homepage_optimized_desktop",
+        "route": "/",
+        "source_file": "contract-reference.jpeg",
+        "source_sha256": "b7a5d2fb39c86543c0b619ac8e5c3a729cb7de6cc0a3eefb629f89628a42ecc6",
+        "native_viewport": {"width": 1448, "height": 1086, "device_pixel_ratio": 1},
+        "transport_preview": {
+          "file": "INTELLURIC-HOMEPAGE-OPTIMIZED-2026-07-29.preview.webp",
+          "sha256": "66a9365fa9bd8e7bcfb00a7aa4f28dd169d5086566d4bcd97160a4e1308f43db",
+          "width": 512,
+          "height": 384
+        }
+      },
+      {
+        "id": "pitch_synthase_reference_analysis_desktop",
+        "route": "/pitch-synthase/wizard/reference",
+        "source_file": "1872091A-8BC0-4130-AEB8-8CF0D244ECD2.jpeg",
+        "source_sha256": "fc77b6444a1f5ba0caf532716cd9cda4e567f87b1d342dd117d6a86de42d42a2",
+        "transport_file": "1872091A-8BC0-4130-AEB8-8CF0D244ECD2.contract.webp",
+        "transport_sha256": "ac57f00a72df876ac7aa7431a399997422d92281b2d41a495f8abb7c035d3f53"
+      }
+    ]
+  },
+  "shared": {
+    "material_primitives": ["MachinedFrame", "PanelWell", "RaisedCard", "RecessedControl", "CrystalButton", "TechnicalLabel", "TechnicalOverlay"]
+  },
+  "homepage": {
+    "navigation_labels": ["Services", "Sample Work", "How It Works", "About", "Resources", "Start a Project"],
+    "hero": {
+      "eyebrow": "TECHNICAL DOCUMENTS AND PRESENTATIONS",
+      "headline_lines": ["We help your idea", "defend itself."],
+      "primary_action": "Start a Project",
+      "secondary_action": "View Sample Work"
+    },
+    "scope_labels": ["START FROM ANYWHERE", "RESEARCH AND ANALYSIS INCLUDED", "ONE COMPLETE PROCESS", "BUILT FOR THE DECISION"],
+    "artifact_labels": ["PITCH DECKS", "IRB PROPOSALS", "GRANT APPLICATIONS", "PATENT LITIGATION", "FEASIBILITY ASSESSMENTS", "TECHNICAL DUE DILIGENCE"],
+    "assembly": ["PublicHeader", "HomepageHero", "ScopeStrip", "ArtifactEvidenceBrowser", "ProjectIntakeCallout"],
+    "interaction": {
+      "category_selection_navigation": "none",
+      "updates_in_place": ["active_control", "tray_label", "example_collection", "carousel_position", "accessibility_announcement"],
+      "carousel": ["previous", "next", "touch_scroll", "trackpad_scroll", "keyboard", "scroll_snap", "reduced_motion"]
+    }
+  },
+  "pitch_synthase": {
+    "steps": ["Project Setup", "Reference Analysis", "Narrative Foundation", "Slide Structure", "Content Synthesis", "Visual Crafting", "Review & Export"]
+  }
+}
