@@ -7,6 +7,7 @@
   "scripts": {
     "tokens:build": "node packages/design-tokens/scripts/build.mjs",
     "tokens:check": "node packages/design-tokens/scripts/build.mjs --check",
+    "source:import": "node scripts/import-optimized-homepage-source.mjs",
     "visual:hydrate": "node scripts/hydrate-visual-fixtures.mjs",
     "visual:check": "node scripts/check-visual-authority.mjs && node scripts/check-optimized-homepage-source.mjs",
     "check": "npm run tokens:check && npm run visual:check"
