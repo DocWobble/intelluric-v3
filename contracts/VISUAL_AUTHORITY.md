@@ -17,24 +17,25 @@ The homepage transport preview is a review aid. The exact source identity above 
 
 1. Primary source pixels and recorded source hash.
 2. `contracts/HOMEPAGE_REVISION_CONTRACT.md` for `/`.
-3. `contracts/SCREEN_GEOMETRY_CONTRACT.md`.
-4. `reference/visual-contract/visual-contract.v3.json`.
-5. `contracts/VISUAL_SYSTEM_CONTRACT.md`.
-6. `contracts/FRONTEND_ARCHITECTURE.md`.
-7. `contracts/PIXEL_ACCEPTANCE_CONTRACT.md`.
-8. `packages/design-tokens/src/`.
-9. `packages/material-system/src/`.
-10. Approved content records.
+3. `contracts/BASELINE_SCOPE.md` for the unchanged Pitch Synthase and shared-system obligations preserved from v2.
+4. `contracts/SCREEN_GEOMETRY_CONTRACT.md`.
+5. `reference/visual-contract/visual-contract.v3.json`.
+6. `contracts/VISUAL_SYSTEM_CONTRACT.md`.
+7. `contracts/FRONTEND_ARCHITECTURE.md`.
+8. `contracts/PIXEL_ACCEPTANCE_CONTRACT.md`.
+9. `packages/design-tokens/src/`.
+10. `packages/material-system/src/`.
+11. Approved content records.
 
 A lower authority never overrides a higher authority.
 
 ## Supersession
 
-The former public-homepage fixture `DECF9777-2952-4B46-A439-DF4BE7F67DEF.jpeg`, its four-line due-diligence proposition, selected-work row, and separate diagnostic callout are **historical**. They no longer govern `/`.
+The former public-homepage fixture `DECF9777-2952-4B46-A439-DF4BE7F67DEF.jpeg`, its four-line due-diligence proposition, selected-work row, and separate diagnostic callout are historical. They no longer govern `/`.
 
-The Pitch Synthase Step 2 primary fixture remains active and unchanged.
+The complete former contract state is retained byte-for-byte under `contracts/baselines/v2/`. `contracts/BASELINE_SCOPE.md` identifies the unchanged Pitch Synthase and shared-system sections that remain binding. This preserves detail without creating a second homepage authority.
 
-`visual-contract.v2.json` is historical. `visual-contract.v3.json` is the machine-readable authority.
+`visual-contract.v2.json` is a historical pointer. `visual-contract.v3.json` is the machine-readable current authority.
 
 ## Homepage observable invariants
 
@@ -52,7 +53,7 @@ The Pitch Synthase Step 2 primary fixture remains active and unchanged.
 
 ## Pitch Synthase invariants
 
-The public header, machined instrument frame, exact seven labels, three-column Step 2 workspace, carry-forward controls, and footer rail remain governed by the prior primary Pitch Synthase source and current v3 machine contract.
+The public header continuity, machined instrument frame, exact seven labels, component/state model, backend-DAG ownership, three-column Step 2 workspace, carry-forward controls, footer rail, responsive rules, and acceptance requirements remain governed by v3 plus the scoped v2 baseline.
 
 ## Asset boundary
 

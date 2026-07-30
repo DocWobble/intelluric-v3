@@ -2,20 +2,21 @@
 
 Status: **binding — v3 implementation target**
 
-`main` is the canonical implementation branch. The optimized homepage revision supersedes the prior homepage contract; the Pitch Synthase Step 2 contract remains active.
+`main` is the canonical implementation branch. The optimized homepage revision supersedes the prior homepage contract; the complete v2 state is preserved under `contracts/baselines/v2/`, and `contracts/BASELINE_SCOPE.md` retains its unchanged Pitch Synthase and shared-system obligations.
 
 ## Authority chain
 
 1. `contracts/VISUAL_AUTHORITY.md`
 2. primary source identities recorded there
 3. `contracts/HOMEPAGE_REVISION_CONTRACT.md`
-4. `contracts/SCREEN_GEOMETRY_CONTRACT.md`
-5. `reference/visual-contract/visual-contract.v3.json`
-6. `contracts/VISUAL_SYSTEM_CONTRACT.md`
-7. `contracts/FRONTEND_ARCHITECTURE.md`
-8. `contracts/PIXEL_ACCEPTANCE_CONTRACT.md`
-9. shared design tokens and material primitives
-10. approved content records
+4. `contracts/BASELINE_SCOPE.md`
+5. `contracts/SCREEN_GEOMETRY_CONTRACT.md`
+6. `reference/visual-contract/visual-contract.v3.json`
+7. `contracts/VISUAL_SYSTEM_CONTRACT.md`
+8. `contracts/FRONTEND_ARCHITECTURE.md`
+9. `contracts/PIXEL_ACCEPTANCE_CONTRACT.md`
+10. shared design tokens and material primitives
+11. approved content records
 
 ## Homepage target
 
@@ -32,7 +33,7 @@ Do not import the staging page as a second app, preserve its monolithic CSS as p
 
 ## Pitch Synthase target
 
-Preserve all seven labels, the public header, Step 2 instrument geometry, and existing backend ownership mapping.
+Preserve the full scoped v2 baseline: all seven labels, public header, application routes, state ownership, backend-DAG mapping, component inventory, Step 2 geometry, material grammar, and acceptance evidence.
 
 ## Completion
 
