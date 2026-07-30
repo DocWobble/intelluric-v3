@@ -43,7 +43,7 @@ Any Pitch Synthase screenshot in this repository is a style specimen only. It ma
 
 - a fixed step count or order;
 - route names;
-- backend-DAG mappings;
+- backend orchestration mappings;
 - user-gate logic;
 - payment or entitlement behavior;
 - generation, verification, review, or export semantics.
