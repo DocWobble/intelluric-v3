@@ -4,6 +4,3 @@ node_modules/
 .env.*
 !.env.example
 dist/
-!packages/design-tokens/dist/
-!packages/design-tokens/dist/**
-
