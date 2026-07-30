@@ -1,32 +1,33 @@
-# Version 2 Baseline Scope
+# Historical Baseline Scope
 
-Status: **binding only where version 3 explicitly preserves it**
+Status: **non-normative history only**
 
-The full pre-revision contracts are preserved byte-for-byte under `contracts/baselines/v2/` so the homepage revision loses no Pitch Synthase, material-system, geometry, lifecycle, or acceptance detail.
+The former version-2 baseline contained application-specific Pitch Synthase routes, workflow labels, backend mappings, state ownership, and acceptance requirements. Those materials are not valid design-system authority and are being removed from the active repository surface.
 
-## Still binding from the v2 baseline
+## What may be retained conceptually
 
-The following v2 sections remain normative unless a v3 file states a more specific rule:
+Only reusable visual observations may survive migration into current design-system contracts:
 
-- Pitch Synthase application purpose, routes, backend-DAG mapping, component inventory, state ownership, and seven-step record model from `baselines/v2/FRONTEND_ARCHITECTURE.md`;
-- Pitch Synthase Step 2 geometry, row anatomy, carry-forward controls, footer rail, typography landmarks, and native tolerance from `baselines/v2/SCREEN_GEOMETRY_CONTRACT.md`;
-- shared material hierarchy, primitive rules, typography, iconography, motion, form grammar, and prohibited drift from `baselines/v2/VISUAL_SYSTEM_CONTRACT.md`;
-- Pitch Synthase visual-regression, interaction, responsive, and evidence requirements from `baselines/v2/PIXEL_ACCEPTANCE_CONTRACT.md`;
-- exact Pitch Synthase source and transport provenance from `baselines/v2/SOURCE_PROVENANCE.md` and `baselines/v2/visual-contract.v2.full.json`.
+- material hierarchy;
+- typography and icon treatment;
+- density and spacing relationships;
+- generic frame, panel, card, control, and progress-state anatomy;
+- responsive and accessibility principles that are independent of product behavior.
 
-## Superseded from the v2 baseline
+A visual observation becomes current only after it is expressed through `VISUAL_SYSTEM_CONTRACT.md`, design tokens, material primitives, or a generic component contract.
 
-The following v2 homepage obligations are historical and have no implementation authority:
+## What is explicitly superseded
 
-- `DECF9777-2952-4B46-A439-DF4BE7F67DEF.jpeg` as the primary homepage;
-- the `TECHNICAL DUE DILIGENCE` eyebrow;
-- the four-line `You already know how...` proposition;
-- the old four commercial-fact strip;
-- the old selected-work row;
-- the separate diagnostic callout;
-- old public navigation labels and route names where they conflict with v3;
-- any v2 geometry or OCR expectation tied specifically to the superseded homepage.
+- every copied Pitch Synthase route;
+- every fixed step label, step count, or step order;
+- backend-DAG mappings and worker ownership;
+- product state schemas;
+- payment, generation, review, verification, and export behavior;
+- application-specific component inventories;
+- any statement that this repository governs Pitch Synthase behavior.
+
+`DocWobble/Pitch_Synthase_v2` is the sole product authority for Pitch Synthase. Historical files do not override it, even when they use words such as “binding,” “canonical,” or “required.”
 
 ## Conflict rule
 
-For `/`, v3 wins completely. For Pitch Synthase and shared physical grammar, the preserved v2 baseline remains binding where v3 is silent. This section-level scoping prevents both data loss and dual homepage authority.
+Current design-system contracts win over historical visual notes. Current consumer repositories win over this repository for all product behavior. No historical product baseline is binding.
