@@ -1,4 +1,4 @@
-# Screenshot Source Provenance
+# Visual Source Provenance
 
 ## Optimized public homepage
 
@@ -22,17 +22,17 @@ Repository-resident executable source:
 - `staging/optimized-homepage-2026-07-29/src/styles.css`
 - `staging/optimized-homepage-2026-07-29/TEXT_SOURCE_MANIFEST.md`
 
-These extracted text members preserve the homepage structure, copy, routes, responsive behavior, category-selection transaction, carousel behavior, and integration events. Their hashes are enforced by `scripts/check-optimized-homepage-source.mjs`.
+These files preserve the homepage structure, copy, responsive behavior, category-selection transaction, carousel behavior, and integration events. Their hashes are enforced by `scripts/check-optimized-homepage-source.mjs`.
 
-Any repository preview or bounded artwork is optional review/runtime material. It does not control whether the executable contract is complete.
+## Instrument style specimen
 
-## Pitch Synthase
-
-Source and transport identities remain as previously recorded:
+Recorded source identity:
 
 - source JPEG SHA-256: `fc77b6444a1f5ba0caf532716cd9cda4e567f87b1d342dd117d6a86de42d42a2`
-- transport WebP SHA-256: `ac57f00a72df876ac7aa7431a399997422d92281b2d41a495f8abb7c035d3f53`
+- optional transport WebP SHA-256: `ac57f00a72df876ac7aa7431a399997422d92281b2d41a495f8abb7c035d3f53`
+
+This image is retained only as a visual specimen for generic instrument materials, density, panel anatomy, typography, and control treatment. It is not evidence of current Pitch Synthase routes or behavior. `DocWobble/Pitch_Synthase_v2` is the sole product authority.
 
 ## Handling rule
 
-Recorded source identity is immutable provenance. Runtime images and previews may use different files and hashes. The old homepage source is historical and cannot silently regain authority.
+Recorded source identity is immutable provenance. A screenshot's existence does not grant it authority outside its classification. Runtime images and previews may use different files and hashes. Historical or specimen imagery cannot silently become a product contract.
