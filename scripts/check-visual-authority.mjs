@@ -143,7 +143,8 @@ const allowedVisualRoots = [
   "packages/design-tokens/dist/",
   "packages/material-system/src/material-system.css",
   "packages/material-system/specimen/",
-  "apps/public-site/src/styles.css"
+  "apps/public-site/src/styles.css",
+  "apps/public-site/dist/"
 ];
 const inspectExtensions = new Set([".css", ".scss", ".sass", ".less", ".tsx", ".ts", ".jsx", ".js"]);
 const forbiddenPatterns = [
