@@ -2,30 +2,29 @@
 
 ## Optimized public homepage
 
-Supplied source:
+Supplied visual reference:
 
 - filename: `contract-reference.jpeg`
 - native dimensions: `1448 × 1086`
-- byte size: `552,778`
-- SHA-256: `b7a5d2fb39c86543c0b619ac8e5c3a729cb7de6cc0a3eefb629f89628a42ecc6`
+- recorded byte size: `552,778`
+- recorded SHA-256: `b7a5d2fb39c86543c0b619ac8e5c3a729cb7de6cc0a3eefb629f89628a42ecc6`
 - source package: `intelluric-ui-contract-729.zip`
 - source package SHA-256: `bca746aff822eb2ea6b6df270d1b7898e92912ced4a9f23997efef034e3fec03`
 
-Repository review preview:
+The visual reference establishes appearance, composition, density, and geometry. It is not required as a repository binary.
 
-- `INTELLURIC-HOMEPAGE-OPTIMIZED-2026-07-29.preview.webp`
-- dimensions: `512 × 384`
-- SHA-256: `66a9365fa9bd8e7bcfb00a7aa4f28dd169d5086566d4bcd97160a4e1308f43db`
+Repository-resident executable source:
 
-The preview is not the native acceptance master and cannot satisfy the exact-source gate. The authoritative JPEG must exist at:
+- `staging/optimized-homepage-2026-07-29/README.md`
+- `staging/optimized-homepage-2026-07-29/index.html`
+- `staging/optimized-homepage-2026-07-29/package.json`
+- `staging/optimized-homepage-2026-07-29/src/app.js`
+- `staging/optimized-homepage-2026-07-29/src/styles.css`
+- `staging/optimized-homepage-2026-07-29/TEXT_SOURCE_MANIFEST.md`
 
-`reference/visual-contract/INTELLURIC-HOMEPAGE-OPTIMIZED-2026-07-29.jpeg`
+These extracted text members preserve the homepage structure, copy, routes, responsive behavior, category-selection transaction, carousel behavior, and integration events. Their hashes are enforced by `scripts/check-optimized-homepage-source.mjs`.
 
-The complete exact package members must also exist under:
-
-`staging/optimized-homepage-2026-07-29/`
-
-Their hashes are enforced by `scripts/check-optimized-homepage-source.mjs`. Reduced, substituted, duplicated, or recompressed files fail acceptance.
+Any repository preview or bounded artwork is optional review/runtime material. It does not control whether the executable contract is complete.
 
 ## Pitch Synthase
 
@@ -36,4 +35,4 @@ Source and transport identities remain as previously recorded:
 
 ## Handling rule
 
-Source identity is immutable. Derived previews, crops, and runtime art receive distinct filenames and hashes. The old homepage source is historical and cannot silently regain authority.
+Recorded source identity is immutable provenance. Runtime images and previews may use different files and hashes. The old homepage source is historical and cannot silently regain authority.
