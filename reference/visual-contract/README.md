@@ -1,5 +1,9 @@
-# Visual Contract Fixtures
+# Visual References
 
-The image fixtures in this directory are normalized review copies of the seven supplied binding screenshots. Their aspect ratios preserve the native contract viewports; the manifest records the source routes, native dimensions, and fixture digests.
+This directory records approved visual references and their provenance.
 
-The screenshots define observable composition. They are not shippable page assets and must never be embedded as a substitute for frontend implementation.
+The optimized homepage is the sole application-specific primary composition contract in this repository. Other supplied screenshots may be retained as non-normative style specimens for material depth, density, typography, panel anatomy, and control treatment.
+
+A style specimen does not own a route, workflow, state machine, backend mapping, or product behavior. Consumer applications remain governed by their own current repositories.
+
+Screenshots are reference evidence, not shippable page assets. Interfaces must be rebuilt with semantic DOM, shared tokens, canonical material primitives, real controls, responsive behavior, and bounded content imagery.
