@@ -12,22 +12,27 @@
   "authority": {
     "primary": [
       {
-        "id": "homepage_optimized_desktop",
+        "id": "homepage_canonical_desktop",
         "route": "/",
-        "source_file": "contract-reference.jpeg",
-        "source_sha256": "b7a5d2fb39c86543c0b619ac8e5c3a729cb7de6cc0a3eefb629f89628a42ecc6",
-        "source_storage": "external_visual_reference",
+        "source_file": "F0C8BFBE-B013-493D-9CCA-BD0434CAEC8F.jpeg",
+        "source_sha256": "a821c8ab2562a7d06d0bfb03eae5b3b4eb9f07312de7ff725fc15c9f58cbee5f",
+        "source_storage": "conversation_supplied_visual_reference",
         "native_viewport": {"width": 1448, "height": 1086, "device_pixel_ratio": 1},
+        "implementation_root": "apps/public-site",
         "executable_text_contract": {
-          "root": "staging/optimized-homepage-2026-07-29",
-          "manifest": "staging/optimized-homepage-2026-07-29/TEXT_SOURCE_MANIFEST.md",
+          "root": "apps/public-site",
+          "manifest": "apps/public-site/README.md",
           "check": "scripts/check-optimized-homepage-source.mjs",
           "files": [
             "README.md",
             "index.html",
             "package.json",
             "src/app.js",
-            "src/styles.css"
+            "src/styles.css",
+            "scripts/build.mjs",
+            "scripts/check.mjs",
+            "scripts/serve.mjs",
+            "source-assets/"
           ]
         }
       }

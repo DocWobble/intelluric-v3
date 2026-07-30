@@ -9,7 +9,10 @@
     "tokens:check": "node packages/design-tokens/scripts/build.mjs --check",
     "visual:hydrate": "node scripts/hydrate-visual-fixtures.mjs",
     "visual:check": "node scripts/check-visual-authority.mjs && node scripts/check-optimized-homepage-source.mjs",
-    "check": "npm run tokens:check && npm run visual:check"
+    "public:build": "npm --workspace @intelluric/public-site run build",
+    "public:check": "npm --workspace @intelluric/public-site run check",
+    "public:serve": "npm --workspace @intelluric/public-site run serve",
+    "check": "npm run tokens:check && npm run visual:check && npm run public:check"
   },
   "engines": { "node": ">=20" }
 }
