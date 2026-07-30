@@ -1,23 +1,27 @@
 # intelluric-v3
 
-Canonical repository for the InTelluric public site and Pitch Synthase.
+Canonical design-system and frontend visual-contract repository for InTelluric.
 
-## Active frontend contract — version 3
+This repository exists to establish the style foundation first, then supply that foundation to the public-site frontend and Pitch Synthase frontend. It is **not** a second source of truth for either application's product behavior.
 
-Frontend work begins at [`contracts/VISUAL_AUTHORITY.md`](contracts/VISUAL_AUTHORITY.md).
+## Build order
 
-Primary routes:
+1. **Design-token foundation** — semantic color, typography, spacing, radius, border, motion, elevation, and contextual accents.
+2. **Material system** — canonical frames, wells, raised cards, recessed controls, crystal actions, technical labels, and overlays.
+3. **Design-system specimens and acceptance** — prove the tokens and material recipes across editorial and instrument-shaped surfaces.
+4. **Public-site frontend** — implement the approved homepage and site structure using the validated system.
+5. **Pitch Synthase frontend** — consume the current product contract from `DocWobble/Pitch_Synthase_v2` and render its live states with the shared system.
 
-- `/` — optimized public homepage contract;
-- `/pitch-synthase/wizard/reference` — unchanged seven-step Pitch Synthase instrument contract.
+No application frontend should be built by inventing or copying routes, workflow steps, state models, or backend behavior into this repository.
 
-The optimized homepage implementation source is staged at [`staging/optimized-homepage-2026-07-29/`](staging/optimized-homepage-2026-07-29/). Its artifact controls replace the scrolling sample collection in place without leaving the page.
+## Start here
 
-## Extracted text-source gate
+1. [`contracts/VISUAL_AUTHORITY.md`](contracts/VISUAL_AUTHORITY.md)
+2. [`contracts/VISUAL_SYSTEM_CONTRACT.md`](contracts/VISUAL_SYSTEM_CONTRACT.md)
+3. [`contracts/CONSUMER_BOUNDARIES.md`](contracts/CONSUMER_BOUNDARIES.md)
+4. [`contracts/FRONTEND_ARCHITECTURE.md`](contracts/FRONTEND_ARCHITECTURE.md)
 
-The source ZIP was extracted and its executable text members were preserved exactly. Repository acceptance now verifies the HTML, CSS, JavaScript, package metadata, and implementation notes rather than requiring the original binary image and cropped assets.
-
-The binding text hashes are recorded in [`staging/optimized-homepage-2026-07-29/TEXT_SOURCE_MANIFEST.md`](staging/optimized-homepage-2026-07-29/TEXT_SOURCE_MANIFEST.md).
+The optimized homepage source is staged at [`staging/optimized-homepage-2026-07-29/`](staging/optimized-homepage-2026-07-29/) as a composition and interaction reference. Its artifact controls replace the scrolling sample collection in place without leaving the page.
 
 Run:
 
@@ -25,4 +29,4 @@ Run:
 npm run check
 ```
 
-The current contract, route topology, interaction requirements, and supersession rules remain under `contracts/` and `reference/visual-contract/`. The supplied screenshot remains the human visual reference; production imagery can be replaced independently without changing the executable frontend contract.
+A passing check proves that the token/material authority is singular, the homepage contract is intact, and no stale Pitch Synthase workflow has been duplicated into this repository.
