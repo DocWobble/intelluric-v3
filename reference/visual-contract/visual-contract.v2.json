@@ -1,6 +1,0 @@
-{
-  "schema_version": "2.0.0",
-  "status": "historical",
-  "superseded_by": "visual-contract.v3.json",
-  "reason": "The optimized homepage contract adopted on 2026-07-29 supersedes the former public-homepage fixture. Pitch Synthase obligations continue in v3."
-}
