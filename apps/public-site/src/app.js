@@ -72,7 +72,7 @@
     }).join('');
     heading.textContent = 'SAMPLE WORK';
     tray.setAttribute('aria-label', `${serviceLabel} sample work`);
-    grid.scrollTo({ left: 0, behavior: 'instant' });
+    grid.scrollTo({ left: 0, behavior: 'auto' });
   }
 
   function selectService(card, announce = true) {
@@ -103,6 +103,18 @@
 
   document.querySelector('.carousel-arrow.right').addEventListener('click', () => scrollSamples(1));
   document.querySelector('.carousel-arrow.left').addEventListener('click', () => scrollSamples(-1));
+  grid.tabIndex = 0;
+  grid.setAttribute('aria-label', 'Sample work carousel');
+  grid.addEventListener('keydown', event => {
+    if (event.key === 'ArrowRight') {
+      event.preventDefault();
+      scrollSamples(1);
+    }
+    if (event.key === 'ArrowLeft') {
+      event.preventDefault();
+      scrollSamples(-1);
+    }
+  });
 
   document.querySelectorAll('a[href]').forEach(link => link.addEventListener('click', () => {
     document.dispatchEvent(new CustomEvent('intelluric:navigate', {
