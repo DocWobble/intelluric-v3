@@ -16,14 +16,14 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Build canonical reference
+      - name: Build parametric style prototype
         run: npm run build
-      - name: Enforce singular visual authority
+      - name: Enforce parametric visual authority
         run: npm run check
-      - name: Upload canonical reference build
+      - name: Upload style prototype build
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: canonical-reference
+          name: parametric-style-prototype
           path: apps/canonical-reference/dist
           if-no-files-found: error

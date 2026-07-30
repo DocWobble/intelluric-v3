@@ -5,7 +5,7 @@ import { extname, join, normalize, resolve } from 'node:path';
 import './build.mjs';
 
 const root = resolve(new URL('../dist', import.meta.url).pathname);
-const types = { '.html':'text/html; charset=utf-8', '.css':'text/css; charset=utf-8', '.js':'text/javascript; charset=utf-8', '.jpg':'image/jpeg' };
+const types = { '.html':'text/html; charset=utf-8', '.css':'text/css; charset=utf-8', '.js':'text/javascript; charset=utf-8', '.jpg':'image/jpeg', '.webp':'image/webp' };
 const server = createServer(async (request, response) => {
   const pathname = new URL(request.url, 'http://localhost').pathname;
   const relative = pathname === '/' ? 'index.html' : normalize(pathname).replace(/^\/+/, '');
@@ -20,4 +20,4 @@ const server = createServer(async (request, response) => {
     response.writeHead(404).end('Not found');
   }
 });
-server.listen(4173, () => console.log('InTelluric canonical reference: http://localhost:4173'));
+server.listen(4173, () => console.log('InTelluric parametric style prototype: http://localhost:4173'));
