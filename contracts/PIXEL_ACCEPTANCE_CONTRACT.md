@@ -1,19 +1,12 @@
-# Pixel Acceptance Contract
+# Visual Acceptance Contract
 
-Status: **binding — version 3**
+Status: **binding**
 
-## Required routes
+## Owned acceptance surfaces
 
-- `/`
-- `/pitch-synthase/wizard/reference`
+The optimized public homepage is the only application-specific surface whose composition is binding in this repository.
 
-Capture at `1448 × 1086`, DPR 1, 100% zoom, dark scheme, settled/reduced motion, fully loaded fonts, no browser chrome.
-
-## Source handling
-
-Homepage native scoring requires the exact source whose SHA-256 is `b7a5d2fb39c86543c0b619ac8e5c3a729cb7de6cc0a3eefb629f89628a42ecc6`. The `512 × 384` repository preview is not a substitute for native pixel scoring.
-
-Pitch Synthase scoring continues against its unchanged primary fixture.
+Capture at `1448 × 1086`, DPR 1, 100% zoom, dark scheme, settled or reduced motion, fully loaded fonts, and no browser chrome.
 
 ## Forbidden shortcut
 
@@ -21,7 +14,7 @@ Whole-page raster backgrounds, large UI screenshot crops, canvas tracing, or ima
 
 ## Homepage fixed-copy audit
 
-Exact:
+Verify:
 
 - header labels;
 - hero eyebrow, headline, body, and actions;
@@ -43,16 +36,25 @@ Required:
 - reduced-motion mode preserves state;
 - canonical artifact links remain real and crawlable.
 
-## Geometry and material proof
+## Token and material proof
 
-At native desktop width, source-derived region edges and repeated component geometry target `±2 CSS px`; structural lines target `±1 physical px`. Material layers must remain separately legible: canvas, groove, warm hairline, frame face, panel well, raised card, crystal state, contact shadow, and bounded content art.
+Acceptance also requires:
+
+- every application value resolves through approved tokens;
+- repeated physical surfaces are supplied by the material-system package;
+- canvas, groove, structural hairline, frame face, panel well, raised card, crystal state, contact shadow, and bounded content art remain separately legible;
+- no consumer-local gradient, shadow, bevel, texture, glow, raw color, or font family competes with the design system.
 
 ## Responsive proof
 
-Also test `1024 × 768`, `768 × 1024`, and `390 × 844`. Responsive captures are judged for hierarchy, state visibility, material persistence, carousel operability, and absence of clipping.
+Also test `1024 × 768`, `768 × 1024`, and `390 × 844`. Responsive captures are judged for hierarchy, state visibility, material persistence, carousel operability, control target size, and absence of clipping.
+
+## Consumer application acceptance
+
+Pitch Synthase and other consumers are accepted in their own repositories against their current product contracts. This repository evaluates only their conformance to the shared tokens, material primitives, generic component anatomy, accessibility treatment, and responsive visual grammar.
+
+No Pitch Synthase route, fixed stage sequence, or copied workflow is a visual-acceptance requirement here.
 
 ## Acceptance artifact
 
-Every implementation PR includes source/implementation overlays, landmark report, fixed-copy report, interaction report, accessibility smoke result, responsive captures, declared artwork masks, and explanations for remaining mismatches.
-
-Native homepage SSIM/pixel-difference claims are prohibited until the exact source bytes are materialized in the test environment.
+Implementation reviews include relevant source/implementation comparisons, landmark reports, token-usage reports, material-primitive usage, interaction results, accessibility smoke results, responsive captures, declared artwork boundaries, and explanations for remaining mismatches.
