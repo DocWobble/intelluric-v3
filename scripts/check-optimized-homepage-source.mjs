@@ -64,8 +64,8 @@ for (const service of ["pitch", "irb", "grant", "patent", "feasibility", "dilige
 for (const event of ["intelluric:service-selected", "intelluric:navigate"]) if (!app.includes(event)) failures.push(`Missing integration event: ${event}`);
 
 const assetHashes = {
-  "hero-owl.jpg": "d44d36ebf218bd86a933c6051d523906797e0ab4eee48ad2e54ffe4096b3ff4f",
-  "sample-investor.jpg": "acbb29f3749fe626c4f16fe74de77ef4e55fd1faa38a6bb40c840aae0a90c590",
+  "hero-owl.jpg": "7976988ce0b4e58e0682f5bb160efb9dbbfc4454daaf3f6d07a3521f5049640b",
+  "sample-investor.jpg": "a9e7d50c9f44d2bfe50f2acb6ced95ce98e96ab241df9d13705e8c3b60fe2b48",
   "sample-research.jpg": "7dd7ca8b6626cc6027b11acf26f5521bf704dcf851709da93e401da26080d4a2",
   "sample-feasibility.jpg": "3813f2822879ca7efee9543f3517b55703fa9a25ee2248f6a9c4f85d0d573670",
   "sample-litigation.jpg": "fd844c644ee2005fb684d7622e04699897d83edc917443faaebf1fdd7d991a6d"
