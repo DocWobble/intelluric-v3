@@ -1,10 +1,10 @@
 # Binding Screen Geometry Contract
 
-Status: **binding — version 3**
+Status: **binding for the approved public homepage**
 
-Native coordinate system: `1448 × 1086`, CSS pixels, origin at top left. Source pixels remain authoritative when a prose measurement differs because of antialiasing.
+Native coordinate system: `1448 × 1086`, CSS pixels, origin at top left. Source pixels remain authoritative when prose measurements differ because of antialiasing.
 
-## Screen A — optimized public homepage
+## Optimized public homepage
 
 Route: `/`
 
@@ -19,7 +19,7 @@ Major vertical sequence:
 5. attached sample-work carousel tray;
 6. integrated closing project-intake callout.
 
-The source image fixes exact native geometry. Implementation measurements must be derived against that source before pixel acceptance. The repository transport preview is not used for native-coordinate scoring.
+The source image fixes native geometry. Implementation measurements must be derived against that source before pixel acceptance.
 
 Homepage geometry invariants:
 
@@ -34,23 +34,17 @@ Homepage geometry invariants:
 - closing callout spans the available width and remains visually distinct;
 - no superseded selected-work/diagnostic split band appears.
 
-## Screen B — Pitch Synthase Step 2
+## Generic instrument geometry
 
-Route: `/pitch-synthase/wizard/reference`
+Instrument-shaped consumer applications may use visual specimens to derive reusable relationships such as:
 
-The v2 geometry remains binding:
+- one enclosing machined frame;
+- a progress or status region;
+- a title/action band;
+- one or more dominant task surfaces;
+- optional context or explanation rails;
+- persistent action or status areas.
 
-| Region | x | y | width | height |
-|---|---:|---:|---:|---:|
-| Instrument frame | 28 | 79 | 1388 | 966 |
-| Stepper well | 64 | 105 | 1263 | 118 |
-| Title/action band | 67 | 244 | 1258 | 124 |
-| Reference panel | 67 | 384 | 494 | 411 |
-| Analysis panel | 575 | 384 | 424 | 411 |
-| Explanation rail | 1011 | 384 | 313 | 411 |
-| Carry-forward well | 67 | 813 | 1258 | 153 |
-| Footer rail | 67 | 983 | 1258 | 43 |
+Those are component relationships, not a product route contract. Exact panel counts, progress-node counts, labels, dimensions, and conditional regions are derived from the current consumer application and its content needs.
 
-Step-node centers at `y=146`: `318, 455, 608, 761, 915, 1062, 1208`. Node diameter is approximately `36 px`.
-
-Pitch Synthase geometry, labels, and material finish are not amended by the homepage revision.
+No Pitch Synthase route, fixed workspace, step-node position, or stage label is binding in this repository.
