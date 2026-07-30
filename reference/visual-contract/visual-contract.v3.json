@@ -8,23 +8,19 @@
         "route": "/",
         "source_file": "contract-reference.jpeg",
         "source_sha256": "b7a5d2fb39c86543c0b619ac8e5c3a729cb7de6cc0a3eefb629f89628a42ecc6",
-        "source_bytes": 552778,
+        "source_storage": "external_visual_reference",
         "native_viewport": {"width": 1448, "height": 1086, "device_pixel_ratio": 1},
-        "required_repository_master": {
-          "file": "INTELLURIC-HOMEPAGE-OPTIMIZED-2026-07-29.jpeg",
-          "sha256": "b7a5d2fb39c86543c0b619ac8e5c3a729cb7de6cc0a3eefb629f89628a42ecc6"
-        },
-        "review_preview": {
-          "file": "INTELLURIC-HOMEPAGE-OPTIMIZED-2026-07-29.preview.webp",
-          "sha256": "66a9365fa9bd8e7bcfb00a7aa4f28dd169d5086566d4bcd97160a4e1308f43db",
-          "width": 512,
-          "height": 384,
-          "acceptance_master": false
-        },
-        "source_package": {
-          "file": "intelluric-ui-contract-729.zip",
-          "sha256": "bca746aff822eb2ea6b6df270d1b7898e92912ced4a9f23997efef034e3fec03",
-          "exact_member_gate": "scripts/check-optimized-homepage-source.mjs"
+        "executable_text_contract": {
+          "root": "staging/optimized-homepage-2026-07-29",
+          "manifest": "staging/optimized-homepage-2026-07-29/TEXT_SOURCE_MANIFEST.md",
+          "check": "scripts/check-optimized-homepage-source.mjs",
+          "files": [
+            "README.md",
+            "index.html",
+            "package.json",
+            "src/app.js",
+            "src/styles.css"
+          ]
         }
       },
       {
