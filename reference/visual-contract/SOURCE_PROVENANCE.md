@@ -11,13 +11,21 @@ Supplied source:
 - source package: `intelluric-ui-contract-729.zip`
 - source package SHA-256: `bca746aff822eb2ea6b6df270d1b7898e92912ced4a9f23997efef034e3fec03`
 
-Repository transport preview:
+Repository review preview:
 
 - `INTELLURIC-HOMEPAGE-OPTIMIZED-2026-07-29.preview.webp`
 - dimensions: `512 × 384`
 - SHA-256: `66a9365fa9bd8e7bcfb00a7aa4f28dd169d5086566d4bcd97160a4e1308f43db`
 
-The exact source hash is the provenance identity. The transport preview exists for repository review and must not be treated as the native pixel-regression master.
+The preview is not the native acceptance master and cannot satisfy the exact-source gate. The authoritative JPEG must exist at:
+
+`reference/visual-contract/INTELLURIC-HOMEPAGE-OPTIMIZED-2026-07-29.jpeg`
+
+The complete exact package members must also exist under:
+
+`staging/optimized-homepage-2026-07-29/`
+
+Their hashes are enforced by `scripts/check-optimized-homepage-source.mjs`. Reduced, substituted, duplicated, or recompressed files fail acceptance.
 
 ## Pitch Synthase
 

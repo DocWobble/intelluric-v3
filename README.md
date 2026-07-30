@@ -11,18 +11,18 @@ Primary routes:
 - `/` — optimized public homepage contract, source identity `b7a5d2fb39c86543c0b619ac8e5c3a729cb7de6cc0a3eefb629f89628a42ecc6` at `1448 × 1086`;
 - `/pitch-synthase/wizard/reference` — unchanged seven-step Pitch Synthase instrument contract.
 
-The optimized homepage source package is staged at [`staging/optimized-homepage-2026-07-29/`](staging/optimized-homepage-2026-07-29/). Its functional category selector changes the scrolling sample tray in place without leaving the page.
+The optimized homepage implementation source is staged at [`staging/optimized-homepage-2026-07-29/`](staging/optimized-homepage-2026-07-29/). Its artifact controls replace the scrolling sample collection in place without leaving the page.
 
-The repository transport preview is:
+## Exact-source gate
 
-`reference/visual-contract/INTELLURIC-HOMEPAGE-OPTIMIZED-2026-07-29.preview.webp`
+The reduced and duplicated staging derivatives from the interrupted import were removed. The repository will not report a passing visual contract until the exact ZIP members—including the native homepage image and distinct sample assets—are present byte-for-byte.
 
-The exact source-image identity, machine contract, route topology, interaction requirements, and supersession rules are recorded under `contracts/` and `reference/visual-contract/`.
-
-Run the contract checks:
+The required source identity and member hashes are enforced by:
 
 ```bash
 npm run check
 ```
 
-A passing check proves that v3 is the singular current authority, the optimized homepage labels and interaction model are fixed, the Pitch Synthase seven-step contract remains intact, required material primitives exist, and no competing application-level visual grammar has appeared.
+See [`staging/optimized-homepage-2026-07-29/SOURCE_IMPORT_REQUIRED.md`](staging/optimized-homepage-2026-07-29/SOURCE_IMPORT_REQUIRED.md).
+
+The current contract, route topology, interaction requirements, and supersession rules remain under `contracts/` and `reference/visual-contract/`.
