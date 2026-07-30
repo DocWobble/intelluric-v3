@@ -1,5 +1,9 @@
 # Fixture Status
 
-The source screenshot authority is fully enumerated in `SCREENSHOT_MANIFEST.md`, including original filenames, route ownership, native viewport dimensions, and SHA-256 identity. Repository-normalized raster copies are intentionally not treated as a separate authority: their only permitted role is review convenience.
+The source-reference classifications are enumerated in `SCREENSHOT_MANIFEST.md`.
 
-Until a binary-capable repository transfer path writes the normalized copies, implementation agents must use the manifest together with the screenshots supplied in the originating task. The visual grammar itself remains executable and singular through the contracts, scalar token package, material-system package, sole specimen, and conflict checker.
+- The optimized homepage is the sole application-specific primary composition contract in this repository.
+- Other screenshots are style specimens or historical provenance only.
+- A style specimen may inform reusable visual grammar but cannot define consumer routes, workflow, state, or backend behavior.
+
+Repository-normalized raster copies are review conveniences, not a separate authority. The executable visual system remains singular through the contracts, design-token package, material-system package, specimens, and conflict checker.
