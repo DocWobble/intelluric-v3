@@ -1,26 +1,27 @@
 # Frontend Implementation Handoff
 
-Status: **binding — v3 implementation target**
+Status: **binding**
 
-`main` is the canonical implementation branch. The optimized homepage revision supersedes the prior homepage contract; the complete v2 state is preserved under `contracts/baselines/v2/`, and `contracts/BASELINE_SCOPE.md` retains its unchanged Pitch Synthase and shared-system obligations.
+The deliverable sequence is design-system first, consumer frontends second.
 
-## Authority chain
+## Phase A — foundation
 
-1. `contracts/VISUAL_AUTHORITY.md`
-2. primary source identities recorded there
-3. `contracts/HOMEPAGE_REVISION_CONTRACT.md`
-4. `contracts/BASELINE_SCOPE.md`
-5. `contracts/SCREEN_GEOMETRY_CONTRACT.md`
-6. `reference/visual-contract/visual-contract.v3.json`
-7. `contracts/VISUAL_SYSTEM_CONTRACT.md`
-8. `contracts/FRONTEND_ARCHITECTURE.md`
-9. `contracts/PIXEL_ACCEPTANCE_CONTRACT.md`
-10. shared design tokens and material primitives
-11. approved content records
+Before building application routes:
 
-## Homepage target
+1. complete semantic design-token coverage;
+2. generate and verify token outputs;
+3. complete the canonical material primitives;
+4. prove editorial and instrument-shaped compositions in specimens;
+5. verify focus, selection, disabled, loading, success, warning, and error treatments;
+6. pass token and visual-authority checks.
 
-Implement the staged optimized composition through the canonical production architecture. Preserve:
+No consumer application may introduce temporary local styling that later becomes de facto authority.
+
+## Phase B — public-site frontend
+
+Implement the optimized homepage and target public-site structure using only the validated token and material packages.
+
+Preserve:
 
 - direct two-line proposition;
 - scope strip;
@@ -29,12 +30,22 @@ Implement the staged optimized composition through the canonical production arch
 - integrated closing intake callout;
 - responsive behavior and commercial path.
 
-Do not import the staging page as a second app, preserve its monolithic CSS as production authority, or reintroduce the superseded selected-work/diagnostic bottom band.
+The staged homepage is a composition and interaction reference, not a second design system. Port its structure through canonical tokens and primitives rather than copying its monolithic CSS as application authority.
 
-## Pitch Synthase target
+## Phase C — Pitch Synthase frontend
 
-Preserve the full scoped v2 baseline: all seven labels, public header, application routes, state ownership, backend-DAG mapping, component inventory, Step 2 geometry, material grammar, and acceptance evidence.
+Use `DocWobble/Pitch_Synthase_v2` as the sole source for current product behavior. At the time of implementation:
+
+1. inspect its current routes, APIs, runtime states, conditional gates, errors, and completion behavior;
+2. identify the generic visual surfaces required;
+3. compose those surfaces from this repository's tokens, materials, and component patterns;
+4. keep all product-specific labels, branching, state, and transitions in Pitch Synthase;
+5. do not preserve any copied or historical workflow from `intelluric-v3`.
+
+This repository supplies the visual language. Pitch Synthase supplies the actual application.
 
 ## Completion
 
-Implementation is complete only when `npm run check`, route tests, category/tray interaction tests, accessibility smoke tests, production build, and applicable visual comparisons pass. A report without repository-local remediation is not the deliverable.
+Foundation completion requires `npm run check` to pass with no duplicate product contract. Public-site completion additionally requires route, interaction, accessibility, responsive, and production-build tests in the public-site implementation. Pitch Synthase completion requires its own current product tests plus visual conformance to this design system.
+
+A report without repository-local remediation is not the deliverable.
