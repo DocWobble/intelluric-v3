@@ -30,7 +30,13 @@ const required = [
   "reference/visual-contract/SOURCE_PROVENANCE.md",
   "reference/visual-contract/visual-contract.v3.json",
   "packages/design-tokens/src/semantic.json",
-  "packages/material-system/src/primitives.tsx"
+  "packages/material-system/src/primitives.tsx",
+  "apps/public-site/package.json",
+  "apps/public-site/index.html",
+  "apps/public-site/src/app.js",
+  "apps/public-site/src/styles.css",
+  "apps/public-site/scripts/build.mjs",
+  "apps/public-site/scripts/check.mjs"
 ];
 for (const file of required) if (!(await exists(join(root, file)))) failures.push(`Missing design authority file: ${file}`);
 
@@ -54,9 +60,10 @@ if (JSON.stringify(contract.build_order) !== JSON.stringify(expectedBuildOrder))
 
 if ((contract.authority?.primary ?? []).length !== 1) failures.push("Exactly one application-specific primary visual contract is allowed here");
 const homepage = contract.authority?.primary?.[0];
-if (homepage?.route !== "/" || homepage?.source_sha256 !== "b7a5d2fb39c86543c0b619ac8e5c3a729cb7de6cc0a3eefb629f89628a42ecc6") {
-  failures.push("The optimized homepage must remain the sole primary application-specific visual contract");
+if (homepage?.route !== "/" || homepage?.source_sha256 !== "a821c8ab2562a7d06d0bfb03eae5b3b4eb9f07312de7ff725fc15c9f58cbee5f") {
+  failures.push("The canonical homepage must remain the sole primary application-specific visual contract");
 }
+if (homepage?.implementation_root !== "apps/public-site") failures.push("Canonical homepage implementation must remain under apps/public-site");
 
 const instrumentSpecimen = (contract.authority?.style_specimens ?? []).find((item) => item.id === "instrument_style_specimen");
 if (!instrumentSpecimen || instrumentSpecimen.behavioral_authority !== false) failures.push("Instrument screenshot must be classified as a non-behavioral style specimen");
@@ -135,7 +142,8 @@ const allowedVisualRoots = [
   "packages/design-tokens/src/",
   "packages/design-tokens/dist/",
   "packages/material-system/src/material-system.css",
-  "packages/material-system/specimen/"
+  "packages/material-system/specimen/",
+  "apps/public-site/src/styles.css"
 ];
 const inspectExtensions = new Set([".css", ".scss", ".sass", ".less", ".tsx", ".ts", ".jsx", ".js"]);
 const forbiddenPatterns = [
@@ -161,4 +169,4 @@ if (failures.length) {
   console.error(`Design authority check failed:\n- ${failures.join("\n- ")}`);
   process.exit(1);
 }
-console.log("Design authority is token-first, material-system-first, and free of duplicated Pitch Synthase product requirements.");
+console.log("Design authority is canonical, deployable, and free of duplicated Pitch Synthase product requirements.");
