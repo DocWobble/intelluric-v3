@@ -2,13 +2,11 @@
 
 Status: **binding**
 
-This contract translates the two primary screenshots into one reusable design grammar. It governs shared chrome and repeated surfaces. Unique owl artwork, product photography, output thumbnails, and record-specific diagrams retain their declared content boundaries.
+This contract translates approved InTelluric references into one reusable design grammar. It governs shared chrome, tokens, physical surfaces, generic component anatomy, motion, responsive behavior, and visual acceptance. It does not define consumer product behavior.
 
 ## Design thesis
 
-The public site is an architectural lobby for consequential technical work. Pitch Synthase is a precision instrument built inside the same practice.
-
-The system communicates engineered permanence through dark mineral surfaces, warm machined edges, sapphire-crystal light, disciplined typography, and inspectable technical artifacts.
+InTelluric should feel like an architectural practice and precision laboratory for consequential technical work: dark mineral surfaces, restrained machined edges, sapphire-crystal light, disciplined typography, compact information density, and inspectable technical artifacts.
 
 It must never become:
 
@@ -20,200 +18,144 @@ It must never become:
 - luxury gold-on-black branding;
 - oversized whitespace with thin content.
 
-## 1. Canvas
+## Foundation order
 
-### Base field
+The design system is built in this order:
 
-Canonical dark range:
+1. semantic design tokens;
+2. compound material recipes;
+3. generic component patterns;
+4. specimens and acceptance evidence;
+5. consumer frontends.
 
-- deepest: `#00030A`;
-- canvas: `#010712`;
-- raised blue-black: `#061526`;
-- active blue field: `#0A1E44`.
+A later layer may compose an earlier layer. It may not redefine it.
 
-The canvas is not a uniform fill. It combines:
+## Canvas
 
-1. near-black blue vertical field;
-2. restrained upper/right sapphire ambient light;
-3. low-opacity technical traces;
-4. micro-grain;
-5. peripheral vignette.
+The canvas is a near-black blue field with restrained upper or lateral sapphire ambience, subordinate technical traces, micro-grain, and peripheral falloff. Texture never competes with text or reads as a separate illustration.
 
-Texture remains subordinate to text and never reads as a separate illustration.
+Canonical roles—not page-local values—cover:
 
-## 2. Material hierarchy
+- deepest background;
+- canvas background;
+- raised blue-black surface;
+- active blue field;
+- muted and emphasized text;
+- structural warm edge;
+- neutral steel edge;
+- contextual state accents.
+
+## Material hierarchy
 
 From lowest to highest:
 
-1. **Canvas**
-2. **Structural frame**
-3. **Panel well**
-4. **Raised card**
-5. **Crystal control / selected state**
-6. **Content artifact**
+1. canvas;
+2. structural frame;
+3. panel well;
+4. raised card;
+5. recessed or crystal control state;
+6. bounded content artifact.
 
-No page-local surface may skip the hierarchy by using one background plus one box shadow.
+No consumer surface may collapse this hierarchy into one background and one shadow.
 
-## 3. Structural frame
+## Canonical physical primitives
 
-A machined frame contains:
+### `MachinedFrame`
 
-1. outer black groove;
-2. warm copper/bronze structural hairline;
-3. dark metallic face;
-4. neutral inner blue-steel hairline;
-5. upper specular edge;
-6. lower black seam;
-7. cast separation shadow.
+Contains an outer groove, subdued warm structural hairline, dark metallic face, neutral inner edge, upper specular edge, lower seam, and cast separation shadow.
 
-The warm line is structural, not decorative. It remains subdued until light catches an edge.
+### `PanelWell`
 
-Primary desktop radii:
+Reads below its frame through a blue-black face, upper-left field, inner occlusion, alloy hairline, lower falloff, and child contact shadow.
 
-- homepage hero corners: approximately `32 px`;
-- instrument outer frame corners: approximately `30 px`;
-- ordinary wells: `14–16 px`;
-- ordinary cards: `10–12 px`;
-- controls: `7–9 px`;
-- pills and switches: fully rounded.
+### `RaisedCard`
 
-## 4. Panel well
+Reads above a well before hover through a directional dark face, fine brushed trace, upper highlight, lower seam, contact shadow, and restrained contextual edge.
 
-A panel well must read below its frame before any content appears.
+### `RecessedControl`
 
-Construction:
+Uses inset geometry, visible label hierarchy, stable layout, and a sharp focus rim. Placeholder text never replaces a persistent label.
 
-- blue-black face;
-- slightly brighter upper-left field;
-- inner top occlusion;
-- neutral alloy hairline;
-- lower internal falloff;
-- subtle contact shadow around children.
+### `CrystalButton`
 
-Wells contain rows, cards, or work surfaces. They do not glow as a whole.
+Uses a dark translucent face, contextual inner reflection, sharp bright rim, bounded bloom, internal aperture highlight, and ivory text. Glow never substitutes for a visible border.
 
-## 5. Raised card
+### `TechnicalLabel`
 
-A raised card must read above a well without hover.
+Provides compact uppercase or monospaced metadata without turning body copy into instrumentation noise.
 
-Construction:
+### `TechnicalOverlay`
 
-- directional dark face;
-- fine brushed trace;
-- one-pixel upper highlight;
-- one-pixel lower seam;
-- contact shadow;
-- restrained contextual edge;
-- optional active aperture line.
+Provides grids, traces, diagrams, and inspection marks as subordinate information layers rather than decorative wallpaper.
 
-Hover adds edge illumination and at most `2–3 px` visual elevation. It does not scale, bounce, or materially change layout.
+Compound gradients, textures, shadows, bevels, and illumination belong only to the material-system package.
 
-## 6. Crystal controls
-
-Primary actions and current steps use a crystal construction:
-
-- dark translucent face;
-- sapphire or contextual inner reflection;
-- sharp one-pixel bright rim;
-- low-radius bloom outside the rim;
-- internal aperture highlight;
-- ivory text.
-
-Glow never substitutes for a visible border.
-
-The default primary action hue in both primary fixtures is sapphire-blue, approximately:
-
-- core: `#4B8FE8`;
-- bright rim: `#7DB2FF`;
-- pale highlight: `#B8D5FF`;
-- deep fill: `#183C6E`.
-
-Violet is permitted for the diagnostic and explanatory callouts, not as the universal CTA color.
-
-## 7. Color roles
+## Color roles
 
 | Role | Contract |
 |---|---|
 | Primary display text | warm ivory |
 | Body text | cool silver |
 | Metadata | muted steel |
-| Structural edge | restrained copper/bronze |
-| Current wizard step | sapphire |
+| Structural edge | restrained copper or bronze |
 | Primary action | sapphire |
-| Completion/success | green or teal |
-| Warning/medium confidence | amber |
-| Diagnostic emphasis | violet with sapphire action |
-| Service categories | sapphire, cyan, green, amber, violet, copper |
+| Current or selected state | sapphire or contextual accent |
+| Completion or success | green or teal |
+| Warning or medium confidence | amber |
+| Error or destructive state | restrained red |
+| Explanatory emphasis | violet with sapphire action |
+| Category accents | sapphire, cyan, green, amber, violet, copper |
 
-Contextual accents alter hue only. Geometry, material stack, typography, and shadow remain fixed.
+Contextual accents alter semantic hue and state emphasis. They do not change equivalent geometry or material construction.
 
-## 8. Typography
+## Typography
 
 Canonical families:
 
-- display/brand: `Cormorant Garamond`;
-- interface/body: `Inter`;
-- technical labels: `IBM Plex Mono`.
+- display and brand: `Cormorant Garamond`;
+- interface and body: `Inter`;
+- technical labels and code-like metadata: `IBM Plex Mono`.
 
 Rules:
 
 - display headings use sentence case;
 - technical eyebrows use uppercase with generous tracking;
 - body text never uses monospaced type;
-- panel names and card titles may use the display serif;
+- panel and card titles may use the display serif;
 - navigation uses the body face;
-- metadata may use body or technical face according to the fixture;
-- line wrapping at the native viewport is part of the contract.
+- metadata uses body or technical face according to role;
+- line wrapping at approved reference viewports is part of visual acceptance.
 
-The homepage hero requires a mixed-style heading: upright ivory followed by italic sapphire. Do not simulate italics by skewing.
-
-## 9. Iconography
+## Iconography
 
 - line icons only;
-- nominal stroke `1.25–1.75 px`;
-- no cartoon fill;
-- no emoji;
-- no inconsistent icon packs;
-- icons sit within an explicit aperture or alignment box;
-- contextual color is applied to stroke and small edge bloom, not to large filled backgrounds.
+- consistent nominal stroke;
+- no cartoon fill or emoji;
+- one coherent icon family;
+- explicit aperture or alignment box;
+- contextual hue applies to stroke and bounded edge bloom, not large filled backgrounds.
 
-Wizard analysis icons use technical radial/geometric motifs. Service icons are simple domain symbols with one accent hue.
-
-## 10. Density and spacing
+## Density and spacing
 
 Base rhythm: `4 px`.
 
-The screenshots use compact vertical sequencing. At the native desktop viewport:
+The system is compact and horizontally efficient. Typical desktop relationships:
 
-- header height is approximately `78 px`;
-- first major surface starts immediately below the header;
-- major section gaps are approximately `8–16 px`;
-- panel internal padding is approximately `16–22 px`;
-- card gaps are approximately `10–14 px`;
-- control heights are approximately `42–46 px`.
+- header near `78 px` high;
+- first major surface immediately below the header;
+- major section gaps around `8–16 px`;
+- panel padding around `16–22 px`;
+- card gaps around `10–14 px`;
+- ordinary control heights around `42–46 px`;
+- touch targets never below `44 px` where touch use is expected.
 
-Do not introduce a second airy spacing system for marketing pages.
+Do not introduce a second airy spacing system for marketing or application pages.
 
-## 11. Shared public header
+## Shared header
 
-The same header appears on both primary screens.
+The header uses the same brand, descriptor, typography, divider, and material treatment across consumers. Navigation labels and destinations belong to the consuming application or approved public-site composition; the visual system owns their anatomy, spacing, focus, active, and responsive treatment.
 
-Required order:
-
-1. InTelluric mark and logotype;
-2. two-line practice descriptor;
-3. Services;
-4. What We Review;
-5. Selected Work;
-6. About;
-7. Resources;
-8. Request Technical Review.
-
-The header is sparse but not detached. It uses a one-pixel lower divider and remains on the canvas, not inside the page frame.
-
-## 12. Editorial shell
-
-Used by the public site.
+## Editorial shell
 
 Traits:
 
@@ -221,148 +163,102 @@ Traits:
 - proof-first composition;
 - dimensional visual artifact;
 - horizontally efficient first viewport;
-- confidence and work evidence before long-form explanation;
+- evidence before long-form explanation;
 - low-pressure but unmistakable actions.
 
-The homepage exact assembly is fixed in `SCREEN_GEOMETRY_CONTRACT.md`.
+The approved homepage assembly is fixed separately in the homepage and geometry contracts.
 
-## 13. Instrument shell
+## Instrument shell
 
-Used by Pitch Synthase.
+A generic instrument-shaped surface may contain:
 
-Traits:
-
-- public header continuity;
+- public-header continuity when appropriate;
 - one enclosing machined frame;
-- persistent seven-step progress;
-- higher information density;
-- one page title/action band;
-- dominant task panels;
-- visible context/explanation rail;
-- persistent state footer.
+- a data-driven progress or status region;
+- a page title and action band;
+- dominant task surfaces;
+- optional context or explanation rails;
+- persistent action, status, or delivery areas.
 
-The instrument is not a separate brand. It cannot introduce a new font, material, corner language, or navigation system.
+The instrument shell is a visual pattern, not a route map. The consumer supplies the number of states, labels, branching, data, and transitions.
 
-## 14. Wizard progress grammar
+## Progress and state grammar
 
-Exact labels:
+Progress indicators must accept variable counts and labels. Supported states include:
 
-1. Project Setup
-2. Reference Analysis
-3. Narrative Foundation
-4. Slide Structure
-5. Content Synthesis
-6. Visual Crafting
-7. Review & Export
+- complete;
+- current;
+- pending;
+- blocked;
+- skipped;
+- processing;
+- warning;
+- error.
 
-States:
+Equivalent nodes and connectors retain stable geometry. State is communicated by border, fill, icon, text, and accessible status—not by arbitrary shape changes.
 
-- complete: quiet bright rim and readable label;
-- current: sapphire fill, bright rim, low-radius glow;
-- pending: dark fill and alloy outline;
-- blocked: same geometry with muted label;
-- error: same geometry with red state treatment.
+No fixed application stage list is part of this contract.
 
-Node size and connector line do not change by state.
-
-## 15. Form and switch grammar
+## Forms and controls
 
 - fields use recessed wells;
-- labels sit outside or at the top edge, never as floating placeholders;
+- labels remain visible outside or at the top edge;
 - uploaded assets appear in bounded media viewports;
-- switches use sapphire track and ivory thumb when on;
+- switches and toggles use semantic state tokens;
 - focus adds a visible sharp rim without moving layout;
-- primary/secondary action hierarchy matches the fixture.
+- primary, secondary, and destructive actions remain visually distinct;
+- validation and error messages remain adjacent and programmatically associated.
 
-## 16. Copy and content boundaries
+## Content boundaries
 
-Editable:
+Editable consumer data includes project names, records, descriptions, confidence values, uploaded metadata, dynamic state text, and output imagery.
 
-- project names;
-- record names;
-- card descriptions;
-- confidence values;
-- uploaded image and file metadata;
-- dynamic state text;
-- output thumbnails.
+Design-system authority includes token roles, material recipes, typography roles, icon grammar, component anatomy, state treatment, responsive behavior, and approved public-homepage composition.
 
-Not editable without a contract revision:
+Consumer authority includes routes, workflow labels, state machines, API data, backend logic, payment, generation, review, verification, and exports.
 
-- navigation labels;
-- hero proposition;
-- seven wizard step labels;
-- major section labels;
-- action hierarchy;
-- native-view geometry;
-- shared material recipes.
+## Motion
 
-## 17. Motion
+Motion is restrained and mechanical:
 
-Motion is restrained and mechanical.
-
-- hover/focus: `90–160 ms`;
+- hover and focus: `90–160 ms`;
 - panel transition: `180–240 ms`;
-- step progression: `200–320 ms`;
-- easing: decisive cubic curves, no spring;
-- reduced-motion mode preserves all state through color, border, and text.
+- progress transition: `200–320 ms`;
+- decisive cubic easing;
+- no spring, elastic overshoot, pulsing neon, parallax, or floating idle motion;
+- reduced-motion mode preserves all state through border, fill, icon, and text.
 
-No parallax, floating idle motion, pulsing neon, or elastic overshoot.
+## Responsive derivation
 
-## 18. Responsive derivation
+Desktop preserves approved proportions and information hierarchy. Tablet may reduce columns and move context rails below dominant work surfaces. Mobile uses one primary content column, menu navigation, horizontally operable carousels where appropriate, visible current status, and no page-level clipping.
 
-The native desktop fixtures are primary.
+Responsive behavior may reflow. It may not flatten the material system or hide required state.
 
-Desktop `>= 1024 px`:
+## Prohibited drift
 
-- preserve exact native proportions at `1448 px`;
-- scale gutters and flexible columns without changing hierarchy;
-- keep all homepage evidence bands visible when height permits;
-- keep the wizard explanation rail visible.
-
-Tablet `768–1023 px`:
-
-- retain material depth;
-- stack hero copy above artwork;
-- convert three-column wizard workspace to two columns, with explanation rail below;
-- preserve the seven-step rail as horizontally scrollable or compressed labels.
-
-Mobile `< 768 px`:
-
-- one content column;
-- public nav becomes a menu;
-- step nodes remain visible;
-- labels may collapse after the current/adjacent steps;
-- carousels scroll horizontally with continuation affordance;
-- no page-level horizontal clipping;
-- controls remain at least `44 px` high.
-
-Responsive behavior may reflow. It may not flatten the material system.
-
-## 19. Prohibited drift
-
-- one-off gradients in applications;
-- page-local shadows, bevels, textures, or glows;
-- alternate five-step wizard;
-- a narrow centered SaaS card in place of the instrument frame;
-- different radii for equivalent objects;
-- arbitrary font sizes;
-- gray text below the semantic secondary token;
+- page-local gradients, shadows, bevels, textures, or glows;
+- alternate raw color or font systems;
+- hardcoded consumer workflow labels in the design-system package;
+- fixed progress-node counts in generic components;
+- copied backend models or route maps;
+- narrow generic SaaS cards replacing the intended framed composition;
+- inconsistent radii for equivalent objects;
 - decorative glow without state or interaction meaning;
 - whole-page raster implementation;
-- screenshot-specific CSS hacks that fail outside `1448 × 1086`;
-- generic template cards replacing the dense evidence layout;
-- “cleaning up” by removing visible information.
+- screenshot-specific hacks that fail responsively;
+- generic template cards replacing dense evidence layouts;
+- “cleaning up” by removing necessary information.
 
-## 20. Acceptance gate
+## Acceptance gate
 
-A surface is eligible for visual review only when:
+A surface is eligible for design review only when:
 
-- primary fixture hash is intact;
 - semantic DOM and real controls exist;
-- native-view landmarks are within contract tolerance;
-- material stack is supplied by the canonical package;
-- copy wraps as shown;
+- shared values resolve through design tokens;
+- compound surfaces resolve through the material system;
+- approved visual landmarks are within contract tolerance;
 - keyboard and touch interactions work;
 - reduced-motion mode preserves state;
-- no raw application-level visual recipe exists;
-- visual-regression output meets `PIXEL_ACCEPTANCE_CONTRACT.md`.
+- no consumer-local visual recipe competes with the shared system;
+- consumer product behavior remains sourced from the consumer repository;
+- applicable visual-acceptance checks pass.
