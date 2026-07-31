@@ -80,12 +80,23 @@ for (const match of html.matchAll(/<a\b[^>]*href="([^"]*)"/gi)) {
   if (match[1] !== "#fixture-action") failures.push(`Reference action has a production destination: ${match[1]}`);
 }
 
-for (const token of ["--frame-width", "--frame-radius", "--frame-inner-radius", "--surface-radius", "--mineral-noise"]) {
+for (const token of [
+  "--frame-width",
+  "--frame-radius",
+  "--frame-inner-radius",
+  "--surface-radius",
+  "--mineral-noise",
+  "--material-key",
+  "--material-warm",
+  "--material-void",
+  "--grain-opacity",
+]) {
   if (!css.includes(`${token}:`)) failures.push(`Missing parametric material token: ${token}`);
 }
 
 for (const fragment of [
   "stitchTiles='stitch'",
+  "PHYSICAL DEPTH MODEL",
   ".structural-frame{",
   ".structural-frame__recess{",
   ".mineral-surface{",
