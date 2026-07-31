@@ -53,7 +53,15 @@ for (const path of required) {
   if (!tracked.includes(path)) failures.push(`Missing required authority file: ${path}`);
 }
 
-const forbiddenRoots = ["canon/", "contracts/", "packages/", "reference/", "scripts/", "staging/"];
+const forbiddenRoots = [
+  "apps/public-site/",
+  "canon/",
+  "contracts/",
+  "packages/",
+  "reference/",
+  "scripts/",
+  "staging/",
+];
 for (const path of tracked) {
   if (forbiddenRoots.some(root => path.startsWith(root))) {
     failures.push(`Superseded authority surface remains tracked: ${path}`);
